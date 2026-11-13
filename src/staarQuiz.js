@@ -7,7 +7,7 @@ export class StaarQuizSimulator {
 
     this.questions = [
       {
-        grade: "Grade 4–5 TEKS Focus",
+        grade: "Grades 4–5 TEKS",
         prompt: "A school library bought 6 boxes of math puzzle books. Each box contained 18 books. The librarian kept 12 books for display and distributed the rest equally among 6 classrooms. How many books did each classroom receive?",
         options: [
           { text: "16 books", isCorrect: true },
@@ -15,29 +15,29 @@ export class StaarQuizSimulator {
           { text: "14 books", isCorrect: false },
           { text: "20 books", isCorrect: false }
         ],
-        explanation: "Total books = 6 × 18 = 108. After keeping 12 for display: 108 − 12 = 96 books remaining. Divided equally among 6 classrooms: 96 ÷ 6 = 16 books per classroom!"
+        explanation: "Total books: 6 × 18 = 108. After keeping 12: 108 − 12 = 96. Divided among 6 rooms: 96 ÷ 6 = 16 books per room."
       },
       {
-        grade: "Grade 6–7 Ratio & Rate Focus",
-        prompt: "A recipe uses 3 cups of flour for every 2 cups of sugar. If a chef makes a large batch using 15 cups of flour, how many cups of sugar are needed to maintain the exact ratio?",
+        grade: "Grades 6–7 Ratios",
+        prompt: "A recipe uses 3 cups of flour for every 2 cups of sugar. If a baker uses 15 cups of flour, how many cups of sugar are needed to keep the exact ratio?",
         options: [
           { text: "10 cups", isCorrect: true },
           { text: "12 cups", isCorrect: false },
           { text: "9 cups", isCorrect: false },
           { text: "8 cups", isCorrect: false }
         ],
-        explanation: "Ratio is Flour : Sugar = 3 : 2. Since 15 cups of flour is 5 times the base recipe (15 ÷ 3 = 5), multiply the sugar by 5: 2 × 5 = 10 cups of sugar."
+        explanation: "The ratio is 3 : 2. Since 15 cups is 5 times the base amount (15 ÷ 3 = 5), multiply the sugar by 5: 2 × 5 = 10 cups."
       },
       {
-        grade: "Grade 8 Pre-Algebra & Function Focus",
-        prompt: "A water tank starts with 40 gallons of water and fills at a steady rate of 5 gallons per minute. Which equation best models the total volume of water V after m minutes?",
+        grade: "Grade 8 Linear Equations",
+        prompt: "A water tank starts with 40 gallons of water and fills at a rate of 5 gallons per minute. Which equation represents the total volume V after m minutes?",
         options: [
           { text: "V = 5m + 40", isCorrect: true },
           { text: "V = 40m + 5", isCorrect: false },
           { text: "V = 5m - 40", isCorrect: false },
           { text: "V = 40(m + 5)", isCorrect: false }
         ],
-        explanation: "The initial quantity (y-intercept b) is 40 gallons. The rate of change (slope m) is +5 gallons/minute. Therefore, V = 5m + 40."
+        explanation: "The starting amount is 40 gallons (y-intercept) and it increases by 5 gallons each minute (rate of change). The equation is V = 5m + 40."
       }
     ];
 
@@ -71,7 +71,7 @@ export class StaarQuizSimulator {
         <div class="flex items-center justify-between pt-2 border-t border-stone-100">
           <span class="text-xs text-ink/60">Score: ${this.score}/${this.questions.length}</span>
           <button type="button" id="quiz-next-btn" class="hidden px-5 py-2 rounded-xl bg-diyaGreen text-white text-xs font-bold uppercase tracking-wider hover:bg-diyaGreen/90 transition-all">
-            ${this.currentIndex < this.questions.length - 1 ? 'Next Question →' : 'See Full Analysis →'}
+            ${this.currentIndex < this.questions.length - 1 ? 'Next Question →' : 'See Summary →'}
           </button>
         </div>
       </div>
@@ -87,7 +87,6 @@ export class StaarQuizSimulator {
 
     optionButtons.forEach(btn => {
       btn.addEventListener('click', () => {
-        // Disable further clicks
         optionButtons.forEach(b => b.disabled = true);
 
         const isCorrect = btn.getAttribute('data-correct') === 'true';
@@ -95,20 +94,19 @@ export class StaarQuizSimulator {
           this.score++;
           btn.classList.add('bg-emerald-50', 'border-emerald-500', 'text-emerald-800');
           feedbackBox.className = 'p-4 rounded-xl text-sm leading-relaxed mb-4 bg-emerald-50 text-emerald-800 border border-emerald-200';
-          feedbackBox.innerHTML = `<strong>🎉 Spot on!</strong> ${q.explanation}`;
+          feedbackBox.innerHTML = `<strong>Correct.</strong> ${q.explanation}`;
           try {
             confetti({ particleCount: 30, spread: 50, origin: { y: 0.7 } });
           } catch(e) {}
         } else {
           btn.classList.add('bg-rose-50', 'border-rose-400', 'text-rose-800');
-          // Highlight correct option
           optionButtons.forEach(b => {
             if (b.getAttribute('data-correct') === 'true') {
               b.classList.add('bg-emerald-50', 'border-emerald-500', 'text-emerald-800');
             }
           });
           feedbackBox.className = 'p-4 rounded-xl text-sm leading-relaxed mb-4 bg-amber-50 text-amber-900 border border-amber-200';
-          feedbackBox.innerHTML = `<strong>💡 Conceptual Breakdown:</strong> ${q.explanation}`;
+          feedbackBox.innerHTML = `<strong>How to solve this:</strong> ${q.explanation}`;
         }
 
         feedbackBox.classList.remove('hidden');
@@ -129,26 +127,25 @@ export class StaarQuizSimulator {
   renderResults() {
     this.container.innerHTML = `
       <div class="quiz-card p-6 bg-white/95 rounded-2xl shadow-xl border border-diyaGreen/20 text-center">
-        <div class="w-16 h-16 mx-auto mb-3 rounded-full bg-cream flex items-center justify-center text-3xl">
-          ${this.score === 3 ? '🏆' : this.score >= 2 ? '⭐' : '🌱'}
+        <div class="w-14 h-14 mx-auto mb-3 rounded-full bg-cream flex items-center justify-center text-2xl">
+          ${this.score === 3 ? '✓' : '📝'}
         </div>
-        <h4 class="font-heading text-xl font-bold text-ink mb-1">Diagnostic Simulation Complete!</h4>
-        <p class="text-sm text-ink/70 mb-4">Your child scored <strong>${this.score} out of 3</strong> in foundational problem solving.</p>
+        <h4 class="font-heading text-xl font-bold text-ink mb-1">Practice Questions Complete</h4>
+        <p class="text-sm text-ink/70 mb-4">Your child answered <strong>${this.score} of 3</strong> correctly.</p>
         
         <div class="bg-cream/60 p-4 rounded-xl text-left text-xs leading-relaxed text-ink/80 mb-5 border border-diyaOrange/20">
-          <strong class="text-diyaOrange block mb-1 font-bold">Mentor Insight:</strong>
+          <strong class="text-diyaOrange block mb-1 font-bold">Teacher Note:</strong>
           ${this.score === 3 
-            ? "Outstanding foundation! In MathDiya's small cohorts (5–8 students), your child will be accelerated with multi-step non-routine problems and competition-level logic from R.S. Aggarwal."
-            : "Strong conceptual potential! They will benefit immensely from MathDiya's structured 2× weekly sessions where teachers uncover underlying 'why' concepts rather than rote steps."}
+            ? "Strong arithmetic and word-problem skills. In our 5–8 student cohorts, we build on this with multi-step reasoning and STAAR question strategies."
+            : "Good effort. Practicing the steps behind word problems and ratio setups in our weekly classes will help turn these into comfortable skills."}
         </div>
 
         <button type="button" data-open-booking class="w-full py-3.5 px-6 rounded-xl bg-diyaOrange text-white font-bold text-sm tracking-wide shadow-lg shadow-diyaOrange/30 hover:bg-diyaOrange/90 transition-all">
-          Book Full 1-on-1 Free Assessment Class →
+          Book Free Assessment Class →
         </button>
       </div>
     `;
 
-    // Rebind open booking triggers inside results
     const newBtn = this.container.querySelector('[data-open-booking]');
     if (newBtn && window.mathDiyaModal) {
       newBtn.addEventListener('click', () => window.mathDiyaModal.open());

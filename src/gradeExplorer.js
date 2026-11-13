@@ -154,7 +154,7 @@ export class GradeExplorer {
         if (selectedIdx === data.sampleQuestion.correctIndex) {
           btn.classList.add('bg-emerald-100', 'border-emerald-500', 'text-emerald-900', 'font-bold');
           feedback.className = 'p-3 rounded-xl text-xs leading-relaxed bg-emerald-50 text-emerald-800 border border-emerald-200';
-          feedback.innerHTML = `<strong>🌟 Brilliant!</strong> ${data.sampleQuestion.explanation}`;
+          feedback.innerHTML = `<strong>Correct.</strong> ${data.sampleQuestion.explanation}`;
           try {
             confetti({ particleCount: 35, spread: 45, origin: { y: 0.6 } });
           } catch(e) {}
