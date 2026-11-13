@@ -1,0 +1,22 @@
+{
+  "name": "math-diya",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "bugs": {
+    "url": "https://github.com/saikrishna-bethamcharla/mathdiya/issues"
+  },
+  "homepage": "https://github.com/saikrishna-bethamcharla/mathdiya#readme",
+  "dependencies": {
+    "canvas-confetti": "^1.9.4",
+    "lucide": "^1.72.0",
+    "three": "^0.187.0",
+    "vite": "^8.3.8"
+  }
+}
