@@ -91,6 +91,23 @@
   object-position: center center;
   opacity: 1;
   pointer-events: none;
+  transition: opacity 0.4s ease;
+  mask-image: radial-gradient(ellipse 95% 90% at 50% 50%, black 82%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 95% 90% at 50% 50%, black 82%, transparent 100%);
+}
+
+#diya-bg-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
   mask-image: radial-gradient(ellipse 95% 90% at 50% 50%, black 82%, transparent 100%);
   -webkit-mask-image: radial-gradient(ellipse 95% 90% at 50% 50%, black 82%, transparent 100%);
 }

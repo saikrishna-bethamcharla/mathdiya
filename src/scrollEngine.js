@@ -1,6 +1,7 @@
 export class MascotScrollEngine {
-  constructor(videoElementId, threeUniverse) {
+  constructor(videoElementId, threeUniverse, diyaVideoId = 'diya-bg-video') {
     this.video = document.getElementById(videoElementId);
+    this.diyaVideo = document.getElementById(diyaVideoId);
     this.three = threeUniverse;
     this.duration = 14.92;
     this.targetTime = 0;
@@ -9,11 +10,26 @@ export class MascotScrollEngine {
     this.isReady = false;
     this.stageCards = document.querySelectorAll('[data-stage]');
     this.progressBar = document.getElementById('scroll-progress-fill');
+    this.diyaPlaying = false;
 
     this.initVideo();
+    this.initDiyaVideo();
     this.bindScroll();
     this.renderLoop = this.renderLoop.bind(this);
     requestAnimationFrame(this.renderLoop);
+  }
+
+  initDiyaVideo() {
+    if (!this.diyaVideo) return;
+    this.diyaVideo.muted = true;
+    this.diyaVideo.playsInline = true;
+
+    // Loop the active flame portion (from 1.8s to 3.3s) once ignited so flame stays alive
+    this.diyaVideo.addEventListener('timeupdate', () => {
+      if (this.diyaPlaying && this.diyaVideo.currentTime >= 3.25) {
+        this.diyaVideo.currentTime = 1.8;
+      }
+    });
   }
 
   initVideo() {
@@ -84,6 +100,50 @@ export class MascotScrollEngine {
 
     // Update active story stages based on scroll progress
     this.updateStages(progress);
+
+    // Seamless background transition between Mascot and Diya Lamp Outro
+    const outroSection = document.getElementById('diya-outro');
+    if (outroSection && this.diyaVideo) {
+      const rect = outroSection.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      // When the outro approaches the viewport
+      if (rect.top < windowHeight * 0.85) {
+        const blend = Math.max(0, Math.min(1, (windowHeight * 0.85 - rect.top) / (windowHeight * 0.5)));
+
+        // Dissolve mascot video out, dissolve diya video in
+        if (this.video) {
+          this.video.style.opacity = (1 - blend).toFixed(2);
+        }
+        this.diyaVideo.style.opacity = blend.toFixed(2);
+
+        // Soften 3D shapes to give prominence to the authentic diya
+        if (this.three && this.three.renderer) {
+          this.three.renderer.domElement.style.opacity = (1 - blend * 0.7).toFixed(2);
+        }
+
+        // Start video playback as the section enters
+        if (blend > 0.05 && !this.diyaPlaying) {
+          this.diyaPlaying = true;
+          this.diyaVideo.play().catch(e => console.warn('Diya play note:', e));
+        }
+      } else {
+        // Reset to mascot stage when scrolled above outro
+        if (this.video) {
+          this.video.style.opacity = '1';
+        }
+        this.diyaVideo.style.opacity = '0';
+        if (this.three && this.three.renderer) {
+          this.three.renderer.domElement.style.opacity = '1';
+        }
+
+        if (this.diyaPlaying) {
+          this.diyaPlaying = false;
+          this.diyaVideo.pause();
+          this.diyaVideo.currentTime = 0;
+        }
+      }
+    }
   }
 
   updateStages(progress) {
