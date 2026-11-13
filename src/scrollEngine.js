@@ -8,9 +8,16 @@ export class MascotScrollEngine {
     this.currentTime = 0;
     this.lerpSpeed = 0.12;
     this.isReady = false;
+
+    // Diya Video HyperFrames Frame-by-Frame Scrub State
+    this.diyaDuration = 3.33;
+    this.diyaTargetTime = 0;
+    this.diyaCurrentTime = 0;
+    this.diyaReady = false;
+    this.diyaLerpSpeed = 0.15;
+
     this.stageCards = document.querySelectorAll('[data-stage]');
     this.progressBar = document.getElementById('scroll-progress-fill');
-    this.diyaPlaying = false;
 
     this.initVideo();
     this.initDiyaVideo();
@@ -24,12 +31,20 @@ export class MascotScrollEngine {
     this.diyaVideo.muted = true;
     this.diyaVideo.playsInline = true;
 
-    // Loop the active flame portion (from 1.8s to 3.3s) once ignited so flame stays alive
-    this.diyaVideo.addEventListener('timeupdate', () => {
-      if (this.diyaPlaying && this.diyaVideo.currentTime >= 3.25) {
-        this.diyaVideo.currentTime = 1.8;
-      }
+    const onMeta = () => {
+      this.diyaDuration = this.diyaVideo.duration || 3.33;
+      this.diyaReady = true;
+      this.onScroll();
+    };
+
+    this.diyaVideo.addEventListener('loadedmetadata', onMeta);
+    this.diyaVideo.addEventListener('canplay', () => {
+      this.diyaReady = true;
     });
+
+    if (this.diyaVideo.readyState >= 1) {
+      onMeta();
+    }
   }
 
   initVideo() {
@@ -101,17 +116,21 @@ export class MascotScrollEngine {
     // Update active story stages based on scroll progress
     this.updateStages(progress);
 
-    // Seamless background transition between Mascot and Diya Lamp Outro
+    // Seamless background transition & HyperFrames frame-by-frame scrub for Diya
     const outroSection = document.getElementById('diya-outro');
     if (outroSection && this.diyaVideo) {
       const rect = outroSection.getBoundingClientRect();
       const windowHeight = window.innerHeight;
 
       // When the outro approaches the viewport
-      if (rect.top < windowHeight * 0.85) {
-        const blend = Math.max(0, Math.min(1, (windowHeight * 0.85 - rect.top) / (windowHeight * 0.5)));
+      if (rect.top < windowHeight * 0.9) {
+        // Calculate scroll progress through outro to the bottom of the page
+        const totalDistance = outroSection.offsetHeight + windowHeight;
+        const currentDistance = windowHeight * 0.9 - rect.top;
+        const outroProgress = Math.max(0, Math.min(1, currentDistance / totalDistance));
 
-        // Dissolve mascot video out, dissolve diya video in
+        // Smooth dissolve: mascot video fades out, diya video fades in
+        const blend = Math.max(0, Math.min(1, outroProgress / 0.25));
         if (this.video) {
           this.video.style.opacity = (1 - blend).toFixed(2);
         }
@@ -122,13 +141,10 @@ export class MascotScrollEngine {
           this.three.renderer.domElement.style.opacity = (1 - blend * 0.7).toFixed(2);
         }
 
-        // Start video playback as the section enters
-        if (blend > 0.05 && !this.diyaPlaying) {
-          this.diyaPlaying = true;
-          this.diyaVideo.play().catch(e => console.warn('Diya play note:', e));
-        }
+        // Frame-by-frame scrub target time: 0.0s to duration
+        this.diyaTargetTime = outroProgress * this.diyaDuration;
       } else {
-        // Reset to mascot stage when scrolled above outro
+        // Reset when scrolled above outro
         if (this.video) {
           this.video.style.opacity = '1';
         }
@@ -136,12 +152,7 @@ export class MascotScrollEngine {
         if (this.three && this.three.renderer) {
           this.three.renderer.domElement.style.opacity = '1';
         }
-
-        if (this.diyaPlaying) {
-          this.diyaPlaying = false;
-          this.diyaVideo.pause();
-          this.diyaVideo.currentTime = 0;
-        }
+        this.diyaTargetTime = 0;
       }
     }
   }
@@ -161,13 +172,26 @@ export class MascotScrollEngine {
   }
 
   renderLoop() {
-    // Smooth dampening interpolation for video currentTime
+    // Smooth dampening interpolation for mascot video currentTime
     if (this.video && this.isReady) {
       const diff = this.targetTime - this.currentTime;
       if (Math.abs(diff) > 0.003 && !this.video.seeking) {
         this.currentTime += diff * this.lerpSpeed;
         try {
           this.video.currentTime = Math.max(0, Math.min(this.duration - 0.05, this.currentTime));
+        } catch (e) {
+          // video seek exception fallback
+        }
+      }
+    }
+
+    // Smooth dampening interpolation for Diya video currentTime (HyperFrames frame-by-frame scrub)
+    if (this.diyaVideo && this.diyaReady) {
+      const diff = this.diyaTargetTime - this.diyaCurrentTime;
+      if (Math.abs(diff) > 0.002 && !this.diyaVideo.seeking) {
+        this.diyaCurrentTime += diff * this.diyaLerpSpeed;
+        try {
+          this.diyaVideo.currentTime = Math.max(0, Math.min(this.diyaDuration - 0.03, this.diyaCurrentTime));
         } catch (e) {
           // video seek exception fallback
         }
