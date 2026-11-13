@@ -53,25 +53,33 @@ export class MascotScrollEngine {
       this.progressBar.style.width = `${progress * 100}%`;
     }
 
-    // Choreographed video timeline mapped directly to section layouts:
-    // 0.00 - 0.18 (Hero): 0.0s -> 3.8s (3D Logo at center, mascot pops forward and jumps)
-    // 0.18 - 0.48 (Methodology / R.S. Aggarwal - right-aligned): 3.8s -> 9.5s (Mascot on LEFT pointing RIGHT)
-    // 0.48 - 0.78 (Texas STAAR & Grade Explorer - left-aligned): 9.5s -> 14.5s (Mascot on RIGHT pointing LEFT)
-    // 0.78 - 1.00 (Reviews, Schedule, FAQ): 14.5s -> 14.85s (Warm welcoming posture)
+    // Choreographed video timeline mapped directly to 50/50 frame section layouts:
+    // 0.00 - 0.16 (Hero): 0.0s -> 3.5s (3D Logo at center, mascot pops forward and jumps)
+    // 0.16 - 0.22 (Walking left): 3.5s -> 6.5s (Mascot walks to frame left)
+    // 0.22 - 0.48 (#curriculum - RIGHT HALF OF FRAME): 6.5s -> 9.8s (Mascot stays at frame LEFT pointing RIGHT)
+    // 0.48 - 0.54 (Walking right): 9.8s -> 12.0s (Mascot crosses over to frame right)
+    // 0.54 - 0.78 (#staar & #grades - LEFT HALF OF FRAME): 12.0s -> 14.8s (Mascot stays at frame RIGHT pointing LEFT)
+    // 0.78 - 1.00 (Reviews, Schedule, FAQ): 14.8s (Warm welcoming posture)
     if (this.video) {
       this.video.style.opacity = '1';
-      if (progress < 0.18) {
-        const p = progress / 0.18;
-        this.targetTime = p * 3.8;
+      if (progress < 0.16) {
+        const p = progress / 0.16;
+        this.targetTime = p * 3.5;
+      } else if (progress < 0.22) {
+        const p = (progress - 0.16) / 0.06;
+        this.targetTime = 3.5 + p * 3.0; // 3.5s to 6.5s (walks to left)
       } else if (progress < 0.48) {
-        const p = (progress - 0.18) / 0.30;
-        this.targetTime = 3.8 + p * 5.7;
+        const p = (progress - 0.22) / 0.26;
+        this.targetTime = 6.5 + p * 3.3; // 6.5s to 9.8s (STAYS AT FRAME LEFT)
+      } else if (progress < 0.54) {
+        const p = (progress - 0.48) / 0.06;
+        this.targetTime = 9.8 + p * 2.2; // 9.8s to 12.0s (walks to right)
       } else if (progress < 0.78) {
-        const p = (progress - 0.48) / 0.30;
-        this.targetTime = 9.5 + p * 5.0;
+        const p = (progress - 0.54) / 0.24;
+        this.targetTime = 12.0 + p * 2.8; // 12.0s to 14.8s (STAYS AT FRAME RIGHT)
       } else {
         const p = Math.min(1, (progress - 0.78) / 0.22);
-        this.targetTime = 14.5 + p * 0.35;
+        this.targetTime = 14.8 + p * 0.08;
       }
     } else {
       this.targetTime = progress * this.duration;
