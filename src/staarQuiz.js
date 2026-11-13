@@ -127,8 +127,10 @@ export class StaarQuizSimulator {
   renderResults() {
     this.container.innerHTML = `
       <div class="quiz-card p-6 bg-white/95 rounded-2xl shadow-xl border border-diyaGreen/20 text-center">
-        <div class="w-14 h-14 mx-auto mb-3 rounded-full bg-cream flex items-center justify-center text-2xl">
-          ${this.score === 3 ? '✓' : '📝'}
+        <div class="w-14 h-14 mx-auto mb-3 rounded-full bg-cream flex items-center justify-center">
+          ${this.score === 3 
+            ? '<svg class="w-7 h-7 text-diyaGreen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>'
+            : '<svg class="w-7 h-7 text-diyaOrange" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>'}
         </div>
         <h4 class="font-heading text-xl font-bold text-ink mb-1">Practice Questions Complete</h4>
         <p class="text-sm text-ink/70 mb-4">Your child answered <strong>${this.score} of 3</strong> correctly.</p>

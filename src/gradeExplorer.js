@@ -48,7 +48,7 @@ export class GradeExplorer {
           <div class="flex-shrink-0">
             <button type="button" data-open-booking data-grade="Grade ${this.activeGrade}" class="w-full sm:w-auto px-6 py-3.5 rounded-2xl bg-diyaOrange text-white font-heading font-bold text-sm tracking-wide shadow-lg shadow-diyaOrange/30 hover:bg-diyaOrange/90 hover:scale-[1.02] transition-all flex items-center justify-center gap-2">
               <span>Book Free Assessment for Grade ${this.activeGrade}</span>
-              <span class="text-base">🔥</span>
+              <svg class="w-4 h-4 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </button>
           </div>
         </div>
@@ -87,7 +87,7 @@ export class GradeExplorer {
               <ul class="space-y-2.5">
                 ${data.staarFocus.map(item => `
                   <li class="flex items-start gap-2.5 text-xs text-ink/80 leading-relaxed">
-                    <span class="text-diyaOrange font-bold text-sm leading-none mt-0.5">✓</span>
+                    <svg class="w-3.5 h-3.5 text-diyaOrange flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
                     <span>${item}</span>
                   </li>
                 `).join('')}
@@ -97,8 +97,9 @@ export class GradeExplorer {
             <!-- Sample Practice Problem -->
             <div class="p-6 rounded-2xl bg-white border border-stone-200 shadow-md">
               <div class="flex items-center justify-between mb-3">
-                <span class="text-xs font-bold uppercase tracking-wider text-diyaOrange flex items-center gap-1.5">
-                  <span>📝</span> Grade ${this.activeGrade} Practice Problem
+                <span class="text-xs font-bold uppercase tracking-wider text-diyaOrange flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 rounded-full bg-diyaOrange"></span>
+                  <span>Grade ${this.activeGrade} Practice Problem</span>
                 </span>
               </div>
               
@@ -117,7 +118,9 @@ export class GradeExplorer {
 
             <!-- Schedule info banner -->
             <div class="p-4 rounded-2xl bg-cream border border-stone-200 flex items-center gap-3">
-              <span class="text-2xl">🗓️</span>
+              <div class="w-9 h-9 rounded-xl bg-orange-100 text-diyaOrange flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+              </div>
               <div>
                 <strong class="text-xs font-bold text-ink block">Live Cohort Timing:</strong>
                 <span class="text-xs text-ink/70">${data.weeklySchedule}</span>
