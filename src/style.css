@@ -71,7 +71,7 @@
   overflow: hidden;
   z-index: 1;
   pointer-events: none;
-  background: radial-gradient(circle at center, #FFF9ED 0%, #FDF3E3 60%, #F5E5CD 100%);
+  background: radial-gradient(circle at 50% 45%, #FFF6E3 0%, #FDF3E3 55%, #F4E3C8 100%);
 }
 
 #bg-video-element {
@@ -83,10 +83,10 @@
   height: 100%;
   object-fit: cover;
   object-position: center center;
-  opacity: 0;
-  transition: opacity 0.3s ease-out;
-  mask-image: radial-gradient(ellipse 95% 90% at 50% 50%, black 80%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 95% 90% at 50% 50%, black 80%, transparent 100%);
+  opacity: 1;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse 95% 90% at 50% 50%, black 82%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 95% 90% at 50% 50%, black 82%, transparent 100%);
 }
 
 #three-canvas-container {

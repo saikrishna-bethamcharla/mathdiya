@@ -66,13 +66,13 @@
       </a>
 
       <!-- Desktop Navigation Links (Centered) -->
-      <nav class="hidden lg:flex items-center justify-center flex-1 mx-6 gap-8 text-sm font-semibold text-ink/80">
-        <a href="#grades" class="hover:text-diyaGreen transition-colors">Grades 3–8</a>
+      <nav class="hidden lg:flex items-center justify-center flex-1 mx-6 gap-7 text-sm font-semibold text-ink/80">
+        <a href="#curriculum" class="hover:text-diyaGreen transition-colors">R.S. Aggarwal Method</a>
         <a href="#staar" class="hover:text-diyaGreen transition-colors flex items-center gap-1.5">
           <span>Texas STAAR & Beyond</span>
           <span class="px-1.5 py-0.5 rounded-full text-[10px] bg-amber-100 text-diyaOrange font-bold">2027 Ready</span>
         </a>
-        <a href="#curriculum" class="hover:text-diyaGreen transition-colors">R.S. Aggarwal Rigor</a>
+        <a href="#grades" class="hover:text-diyaGreen transition-colors">Grades 3–8</a>
         <a href="#how-it-works" class="hover:text-diyaGreen transition-colors">How It Works</a>
         <a href="#testimonials" class="hover:text-diyaGreen transition-colors">Parent Reviews</a>
         <a href="#faq" class="hover:text-diyaGreen transition-colors">FAQ</a>
@@ -102,9 +102,9 @@
     <!-- Mobile Dropdown Nav -->
     <div id="mobile-nav" class="hidden lg:hidden bg-cream border-b border-stone-200 px-6 py-5 shadow-xl">
       <div class="flex flex-col gap-4 text-sm font-semibold text-ink">
-        <a href="#grades" class="hover:text-diyaGreen py-1">Grades 3–8 Explorer</a>
-        <a href="#staar" class="hover:text-diyaGreen py-1">Texas STAAR & Beyond</a>
         <a href="#curriculum" class="hover:text-diyaGreen py-1">R.S. Aggarwal Method</a>
+        <a href="#staar" class="hover:text-diyaGreen py-1">Texas STAAR & Beyond</a>
+        <a href="#grades" class="hover:text-diyaGreen py-1">Grades 3–8 Syllabus</a>
         <a href="#how-it-works" class="hover:text-diyaGreen py-1">How Classes Work</a>
         <a href="#testimonials" class="hover:text-diyaGreen py-1">Parent Reviews</a>
         <a href="#faq" class="hover:text-diyaGreen py-1">Frequently Asked Questions</a>
@@ -123,7 +123,7 @@
       playsinline
       muted
       preload="auto"
-      poster="/MathDiya-logo.png"
+      poster="/mascot_poster.png"
     ></video>
     <div id="three-canvas-container"></div>
   </div>
@@ -131,42 +131,49 @@
   <!-- Main Scrollable Content Container -->
   <main class="relative z-10 -mt-[100vh]">
 
-    <!-- HERO SECTION (0% to ~25% Scroll Range) -->
-    <section id="hero" class="min-h-screen flex flex-col justify-between px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pt-10 sm:pt-14 pb-16">
-      <div class="max-w-5xl mx-auto pt-4 sm:pt-8 text-center flex flex-col items-center">
+    <!-- HERO SECTION (0% to ~18% Scroll Range) -->
+    <section id="hero" class="min-h-screen flex flex-col justify-between px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pt-6 sm:pt-8 pb-12">
+      <!-- Top Framing Header -->
+      <div class="max-w-4xl mx-auto text-center flex flex-col items-center">
         <!-- Brand Pill -->
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/95 border border-diyaGreen/30 shadow-sm mb-6 animate-float mx-auto">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/95 border border-diyaGreen/30 shadow-sm mb-3 animate-float mx-auto">
           <span class="text-sm">🪔</span>
           <span class="font-heading font-bold text-xs sm:text-sm text-diyaGreen tracking-wide uppercase">
-            Light up your child’s math
+            Live Online Math Classes • US Grades 3–8
           </span>
         </div>
 
         <!-- Main Headline -->
-        <h1 class="font-heading text-4xl sm:text-6xl lg:text-7xl font-bold text-ink leading-[1.08] tracking-tight mb-6 max-w-4xl text-center">
-          Light up your child’s math — <span class="text-diyaGreen">live classes for Grades 3–8</span>.
+        <h1 class="font-heading text-3xl sm:text-5xl lg:text-6xl font-bold text-ink leading-[1.12] tracking-tight mb-3 max-w-3xl text-center">
+          Light up your child’s math with <span class="text-diyaGreen">deep conceptual understanding</span>.
         </h1>
 
         <!-- Subheadline reassuring US Parents -->
-        <p class="text-lg sm:text-xl text-ink/80 leading-relaxed font-normal max-w-3xl mb-8 text-center">
-          Small live groups (5–8 students) that build real problem-solving habits. We combine the conceptual rigor of <strong>R.S. Aggarwal</strong> with <strong>Texas Math Readiness (STAAR &amp; beyond)</strong> so your child understands the "why", not just the steps.
+        <p class="text-sm sm:text-base lg:text-lg text-ink/80 leading-relaxed font-normal max-w-2xl text-center">
+          Small live groups (5–8 students) combining <strong>R.S. Aggarwal</strong> depth with <strong>Texas Math Readiness (STAAR &amp; beyond)</strong>. We teach the "why", not just the steps.
         </p>
+      </div>
 
+      <!-- Center 3D Showcase Corridor (Preserves unobstructed view of 3D MathDiya logo & mascot jump) -->
+      <div class="h-32 sm:h-44 lg:h-52 w-full flex items-center justify-center pointer-events-none"></div>
+
+      <!-- Bottom Framing Actions & Pillars -->
+      <div class="max-w-5xl mx-auto w-full flex flex-col items-center">
         <!-- CTA Action Cluster -->
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8 w-full">
-          <button type="button" data-open-booking class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-diyaOrange hover:bg-diyaOrange/95 text-white font-heading font-bold text-base sm:text-lg tracking-wide shadow-xl shadow-diyaOrange/35 hover:shadow-2xl hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3">
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-4 w-full">
+          <button type="button" data-open-booking class="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-diyaOrange hover:bg-diyaOrange/95 text-white font-heading font-bold text-base tracking-wide shadow-xl shadow-diyaOrange/35 hover:shadow-2xl hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3">
             <span>Book Free Assessment Class</span>
-            <span class="text-xl">→</span>
+            <span class="text-lg">→</span>
           </button>
           
-          <a href="#grades" class="w-full sm:w-auto px-7 py-4 rounded-2xl bg-white/95 hover:bg-white text-ink font-heading font-semibold text-base border border-stone-200 shadow-sm hover:shadow transition-all text-center flex items-center justify-center gap-2">
-            <span>Explore Grades 3–8</span>
+          <a href="#curriculum" class="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-white/95 hover:bg-white text-ink font-heading font-semibold text-base border border-stone-200 shadow-sm hover:shadow transition-all text-center flex items-center justify-center gap-2">
+            <span>Explore Methodology</span>
             <span>📐</span>
           </a>
         </div>
 
         <!-- Social Proof Metric -->
-        <div class="flex items-center justify-center gap-4 text-xs sm:text-sm text-ink/75 font-medium text-center">
+        <div class="flex items-center justify-center gap-3 text-xs sm:text-sm text-ink/75 font-medium text-center mb-6">
           <div class="flex text-glowGold text-base tracking-tighter">
             ★★★★★
           </div>
@@ -174,54 +181,57 @@
             <span class="font-bold text-ink">4.9/5 rating</span> from 450+ US parents across Texas, California, New Jersey, and Illinois.
           </div>
         </div>
-      </div>
 
-      <!-- Trust Bar (4 Core Program Pillars from the Brief) -->
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 pt-12 pb-4">
-        <!-- Pillar 1 -->
-        <div class="glass-panel p-4 sm:p-5 rounded-2xl border-l-4 border-l-diyaGreen">
-          <span class="text-2xl mb-1 block">📅</span>
-          <div class="font-heading font-bold text-xs uppercase tracking-wider text-diyaGreen">Duration</div>
-          <div class="font-heading text-lg sm:text-xl font-bold text-ink">8 – 9 Months</div>
-          <div class="text-xs text-ink/70">Full school year mastery</div>
-        </div>
+        <!-- Trust Bar (4 Core Program Pillars from the Brief) -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 w-full">
+          <!-- Pillar 1 -->
+          <div class="glass-panel p-3.5 sm:p-4 rounded-2xl border-l-4 border-l-diyaGreen">
+            <span class="text-xl mb-1 block">📅</span>
+            <div class="font-heading font-bold text-[11px] uppercase tracking-wider text-diyaGreen">Duration</div>
+            <div class="font-heading text-base sm:text-lg font-bold text-ink">8 – 9 Months</div>
+            <div class="text-[11px] text-ink/70">Full school year mastery</div>
+          </div>
 
-        <!-- Pillar 2 -->
-        <div class="glass-panel p-4 sm:p-5 rounded-2xl border-l-4 border-l-diyaOrange">
-          <span class="text-2xl mb-1 block">👥</span>
-          <div class="font-heading font-bold text-xs uppercase tracking-wider text-diyaOrange">Group Size</div>
-          <div class="font-heading text-lg sm:text-xl font-bold text-ink">5 – 8 Students</div>
-          <div class="text-xs text-ink/70">Collaborative peer learning</div>
-        </div>
+          <!-- Pillar 2 -->
+          <div class="glass-panel p-3.5 sm:p-4 rounded-2xl border-l-4 border-l-diyaOrange">
+            <span class="text-xl mb-1 block">👥</span>
+            <div class="font-heading font-bold text-[11px] uppercase tracking-wider text-diyaOrange">Group Size</div>
+            <div class="font-heading text-base sm:text-lg font-bold text-ink">5 – 8 Students</div>
+            <div class="text-[11px] text-ink/70">Collaborative peer learning</div>
+          </div>
 
-        <!-- Pillar 3 -->
-        <div class="glass-panel p-4 sm:p-5 rounded-2xl border-l-4 border-l-glowGold">
-          <span class="text-2xl mb-1 block">⏱️</span>
-          <div class="font-heading font-bold text-xs uppercase tracking-wider text-amber-600">Live Classes</div>
-          <div class="font-heading text-lg sm:text-xl font-bold text-ink">2 × 1 hr / week</div>
-          <div class="text-xs text-ink/70">~8 interactive hours/month</div>
-        </div>
+          <!-- Pillar 3 -->
+          <div class="glass-panel p-3.5 sm:p-4 rounded-2xl border-l-4 border-l-glowGold">
+            <span class="text-xl mb-1 block">⏱️</span>
+            <div class="font-heading font-bold text-[11px] uppercase tracking-wider text-amber-600">Live Classes</div>
+            <div class="font-heading text-base sm:text-lg font-bold text-ink">2 × 1 hr / week</div>
+            <div class="text-[11px] text-ink/70">~8 interactive hours/month</div>
+          </div>
 
-        <!-- Pillar 4 -->
-        <div class="glass-panel p-4 sm:p-5 rounded-2xl border-l-4 border-l-flameRed">
-          <span class="text-2xl mb-1 block">🏆</span>
-          <div class="font-heading font-bold text-xs uppercase tracking-wider text-flameRed">Curriculum</div>
-          <div class="font-heading text-lg sm:text-xl font-bold text-ink">R.S. Aggarwal + STAAR</div>
-          <div class="text-xs text-ink/70">Concept depth &amp; test readiness</div>
+          <!-- Pillar 4 -->
+          <div class="glass-panel p-3.5 sm:p-4 rounded-2xl border-l-4 border-l-flameRed">
+            <span class="text-xl mb-1 block">🏆</span>
+            <div class="font-heading font-bold text-[11px] uppercase tracking-wider text-flameRed">Curriculum</div>
+            <div class="font-heading text-base sm:text-lg font-bold text-ink">R.S. Aggarwal + STAAR</div>
+            <div class="text-[11px] text-ink/70">Concept depth &amp; test readiness</div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 2: METHODOLOGY & COHORT LEARNING (~25% to 50% Scroll) -->
+    <!-- SECTION 2: METHODOLOGY & COHORT LEARNING (~18% to 48% Scroll) -->
     <section id="curriculum" class="min-h-screen py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-col justify-center">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-        <!-- Left Column -->
-        <div class="lg:col-span-6 space-y-6">
+        <!-- Left Column Spacer: Keeps the 3D Mascot on the left unobstructed while it gestures right -->
+        <div class="hidden lg:block lg:col-span-5 pointer-events-none min-h-[420px]"></div>
+
+        <!-- Right Column: Content placed where the mascot on the left is pointing -->
+        <div class="lg:col-span-7 space-y-6">
           <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100 text-diyaGreen text-xs font-bold uppercase tracking-wider">
-            <span>📐</span> Curriculum &amp; Teaching Method
+            <span>📐</span> The MathDiya Method
           </div>
 
-          <h2 class="font-heading text-3xl sm:text-5xl font-bold text-ink leading-tight">
+          <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-ink leading-tight">
             Strong concepts first. <span class="text-diyaGreen">Problem-solving that sticks.</span>
           </h2>
 
@@ -229,129 +239,137 @@
             In each class, our focus is simple: turn math from an evening struggle into something your child understands and can explain with confidence. We focus on why formulas work, not just how to apply them.
           </p>
 
-          <div class="space-y-4 pt-2">
-            <div class="flex items-start gap-4 p-4 rounded-2xl bg-white/90 border border-stone-200 shadow-sm">
-              <span class="text-2xl">🌱</span>
-              <div>
-                <h4 class="font-heading font-bold text-ink text-base">R.S. Aggarwal Conceptual Foundation</h4>
-                <p class="text-xs sm:text-sm text-ink/70 leading-relaxed">
-                  Students learn to break down multi-step problems systematically. Instead of memorizing tricks that vanish before exam day, they understand the mathematical principles behind each step.
-                </p>
+          <div class="space-y-4 pt-1">
+            <div class="glass-panel p-4 sm:p-5 rounded-2xl border border-stone-200/80 shadow-sm bg-white/90">
+              <div class="flex items-start gap-4">
+                <span class="text-2xl">🌱</span>
+                <div>
+                  <h4 class="font-heading font-bold text-ink text-base">R.S. Aggarwal Conceptual Foundation</h4>
+                  <p class="text-xs sm:text-sm text-ink/75 leading-relaxed mt-1">
+                    Students learn to break down multi-step problems systematically. Instead of memorizing tricks that vanish before exam day, they understand the mathematical principles behind each step.
+                  </p>
+                </div>
               </div>
             </div>
 
-            <div class="flex items-start gap-4 p-4 rounded-2xl bg-white/90 border border-stone-200 shadow-sm">
-              <span class="text-2xl">🤝</span>
-              <div>
-                <h4 class="font-heading font-bold text-ink text-base">Small Groups of 5–8 Students</h4>
-                <p class="text-xs sm:text-sm text-ink/70 leading-relaxed">
-                  One-on-one tutoring often leaves children feeling self-conscious. In small cohorts of 5 to 8 peers, students hear how others think through problems, ask questions freely, and stay engaged throughout the session.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right Column: Interactive Contrast Matrix -->
-        <div class="lg:col-span-6">
-          <div class="glass-panel rounded-3xl p-6 sm:p-8 border border-diyaGreen/20 shadow-2xl">
-            <h3 class="font-heading text-xl sm:text-2xl font-bold text-ink mb-6 flex items-center gap-2">
-              <span>⚖️</span> The MathDiya Difference
-            </h3>
-
-            <div class="space-y-4 text-xs sm:text-sm">
-              <div class="p-4 rounded-2xl bg-stone-100/80 border border-stone-200">
-                <span class="font-bold text-flameRed block mb-1">Standard Worksheet Tutoring:</span>
-                <p class="text-ink/70">Focuses on repetitive drills. When a school or state test rephrases a question or adds an extra step, students get confused and second-guess themselves.</p>
-              </div>
-
-              <div class="p-4 rounded-2xl bg-emerald-50 border border-emerald-300 shadow-sm">
-                <span class="font-bold text-diyaGreen block mb-1">MathDiya Live Cohorts:</span>
-                <p class="text-ink/85 font-medium leading-relaxed">Teaches students how to draw models, organize given facts, and solve unfamiliar problems step-by-step with structured reasoning.</p>
+            <div class="glass-panel p-4 sm:p-5 rounded-2xl border border-stone-200/80 shadow-sm bg-white/90">
+              <div class="flex items-start gap-4">
+                <span class="text-2xl">🤝</span>
+                <div>
+                  <h4 class="font-heading font-bold text-ink text-base">Small Live Cohorts of 5–8 Students</h4>
+                  <p class="text-xs sm:text-sm text-ink/75 leading-relaxed mt-1">
+                    One-on-one tutoring often leaves children feeling self-conscious. In small cohorts of 5 to 8 peers, students hear how others think through problems, ask questions freely, and stay engaged throughout the session.
+                  </p>
+                </div>
               </div>
             </div>
 
-            <div class="mt-6 pt-6 border-t border-stone-200 flex items-center justify-between">
-              <div>
-                <span class="text-xs text-ink/60 font-semibold block">Need to see where your child stands?</span>
-                <span class="text-sm font-bold text-ink">Free 30-min Diagnostic Session</span>
-              </div>
-              <button type="button" data-open-booking class="px-5 py-2.5 rounded-xl bg-diyaGreen hover:bg-diyaGreen/90 text-white font-heading font-bold text-xs tracking-wider uppercase shadow-md transition-all">
-                Book Now
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 3: GRADE EXPLORER (GRADES 3 TO 8) (~50% to 75% Scroll) -->
-    <section id="grades" class="min-h-screen py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      <div class="text-center max-w-3xl mx-auto mb-10">
-        <div class="glass-panel inline-block px-8 py-6 rounded-3xl border border-white/60 shadow-lg">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100 text-diyaGreen text-xs font-bold uppercase tracking-wider mb-3">
-            <span>📚</span> Grade Syllabi (Grades 3–8)
-          </div>
-          <h2 class="font-heading text-3xl sm:text-5xl font-bold text-ink mb-3">
-            Curriculum by Grade
-          </h2>
-          <p class="text-ink/80 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
-            Course outlines, R.S. Aggarwal units, and Texas STAAR test objectives for each grade level.
-          </p>
-        </div>
-      </div>
-
-      <!-- Container rendered dynamically by GradeExplorer class -->
-      <div id="grade-explorer-container"></div>
-    </section>
-
-    <!-- SECTION 4: TEXAS MATH READINESS (STAAR & BEYOND) PANEL (~75% Scroll) -->
-    <section id="staar" class="min-h-screen py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-col justify-center">
-      <div class="glass-panel rounded-3xl p-8 sm:p-12 border-2 border-diyaOrange/30 shadow-2xl relative overflow-hidden">
-        <!-- Decorative Diya Glow Corner -->
-        <div class="absolute -top-20 -right-20 w-60 h-60 bg-gradient-to-br from-glowGold/30 to-diyaOrange/20 rounded-full blur-3xl pointer-events-none"></div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
-          <!-- Text Brief Column -->
-          <div class="lg:col-span-6 space-y-6">
-            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-100 text-amber-900 text-xs font-bold uppercase tracking-wider">
-              <span>⭐</span> Texas Math Readiness (STAAR &amp; Beyond)
-            </div>
-
-            <h3 class="font-heading text-3xl sm:text-4xl font-bold text-ink leading-tight">
-              Prepared for the Spring 2027 Texas Testing Transition.
-            </h3>
-
-            <div class="p-4 rounded-2xl bg-amber-50 border border-amber-200 text-xs sm:text-sm text-ink/80 leading-relaxed">
-              <strong class="text-diyaOrange block mb-1">Note for Texas Parents:</strong>
-              Spring 2027 is the final year of the single spring STAAR test for Grades 3–8. Texas is moving to three shorter progress tests during the year. Our curriculum is labeled “Texas Math Readiness (STAAR &amp; beyond)” so your child builds the problem-solving intuition required under either testing model.
-            </div>
-
-            <div class="grid grid-cols-2 gap-4 text-xs sm:text-sm">
-              <div class="p-3.5 rounded-xl bg-white border border-stone-200">
-                <span class="font-bold text-diyaGreen block text-sm mb-1">Timed Confidence</span>
-                <span class="text-ink/70">Mastering Texas inline questions, drag-and-drop, and grid-in answers.</span>
-              </div>
-              <div class="p-3.5 rounded-xl bg-white border border-stone-200">
-                <span class="font-bold text-diyaOrange block text-sm mb-1">TEKS Aligned</span>
-                <span class="text-ink/70">Strict adherence to Texas Essential Knowledge and Skills benchmarks.</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Diagnostic Simulator Column -->
-          <div class="lg:col-span-6">
-            <div class="mb-3 text-center sm:text-left">
-              <h4 class="font-heading font-bold text-lg text-ink flex items-center justify-center sm:justify-start gap-2">
-                <span>🧠</span> Problem-Solving Sample Questions
+            <!-- Comparison Matrix -->
+            <div class="glass-panel rounded-2xl p-5 border border-diyaGreen/30 shadow-md bg-white/95">
+              <h4 class="font-heading font-bold text-ink text-sm sm:text-base mb-3 flex items-center gap-2">
+                <span>⚖️</span> The MathDiya Difference
               </h4>
-              <p class="text-xs text-ink/65">Examples of multi-step problem solving covered in our classes:</p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                <div class="p-3.5 rounded-xl bg-stone-100/90 border border-stone-200">
+                  <span class="font-bold text-flameRed block mb-1">Standard Worksheet Drills:</span>
+                  <p class="text-ink/70">Focuses on repetitive tricks. When tests rephrase problems or add an extra step, students get confused and second-guess themselves.</p>
+                </div>
+                <div class="p-3.5 rounded-xl bg-emerald-50 border border-emerald-300">
+                  <span class="font-bold text-diyaGreen block mb-1">MathDiya Method:</span>
+                  <p class="text-ink/85 font-medium leading-relaxed">Teaches students how to draw models, organize given facts, and solve unfamiliar problems step-by-step with structured reasoning.</p>
+                </div>
+              </div>
+              <div class="mt-4 pt-3 border-t border-stone-200 flex items-center justify-between">
+                <div>
+                  <span class="text-xs text-ink/60 font-semibold block">Need to see where your child stands?</span>
+                  <span class="text-sm font-bold text-ink">Free 30-min Diagnostic Session</span>
+                </div>
+                <button type="button" data-open-booking class="px-4 py-2 rounded-xl bg-diyaGreen hover:bg-diyaGreen/90 text-white font-heading font-bold text-xs tracking-wider uppercase shadow-md transition-all">
+                  Book Now
+                </button>
+              </div>
             </div>
-
-            <!-- Quiz Simulator Container -->
-            <div id="staar-quiz-container"></div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: TEXAS MATH READINESS (STAAR & BEYOND) (~48% to 62% Scroll) -->
+    <section id="staar" class="min-h-screen py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-col justify-center">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <!-- Left Column: Content placed where the mascot on the right is gesturing -->
+        <div class="lg:col-span-8">
+          <div class="glass-panel rounded-3xl p-6 sm:p-10 border-2 border-diyaOrange/30 shadow-2xl relative overflow-hidden bg-white/95">
+            <!-- Decorative Diya Glow Corner -->
+            <div class="absolute -top-20 -right-20 w-60 h-60 bg-gradient-to-br from-glowGold/30 to-diyaOrange/20 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="relative z-10 space-y-5">
+              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-100 text-amber-900 text-xs font-bold uppercase tracking-wider">
+                <span>⭐</span> Texas Math Readiness (STAAR &amp; Beyond)
+              </div>
+
+              <h3 class="font-heading text-2xl sm:text-4xl font-bold text-ink leading-tight">
+                Prepared for the Spring 2027 Texas Testing Transition.
+              </h3>
+
+              <div class="p-4 rounded-2xl bg-amber-50 border border-amber-200 text-xs sm:text-sm text-ink/80 leading-relaxed">
+                <strong class="text-diyaOrange block mb-1">Note for Texas Parents:</strong>
+                Spring 2027 is the final year of the single spring STAAR test for Grades 3–8. Texas is moving to three shorter progress tests during the year. Our curriculum is labeled “Texas Math Readiness (STAAR &amp; beyond)” so your child builds the problem-solving intuition required under either testing model.
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm">
+                <div class="p-3.5 rounded-xl bg-white border border-stone-200">
+                  <span class="font-bold text-diyaGreen block text-sm mb-1">Timed Confidence</span>
+                  <span class="text-ink/70">Mastering Texas inline questions, drag-and-drop, and grid-in answers.</span>
+                </div>
+                <div class="p-3.5 rounded-xl bg-white border border-stone-200">
+                  <span class="font-bold text-diyaOrange block text-sm mb-1">TEKS Aligned</span>
+                  <span class="text-ink/70">Strict adherence to Texas Essential Knowledge and Skills benchmarks.</span>
+                </div>
+              </div>
+
+              <!-- Interactive Diagnostic Simulator -->
+              <div class="pt-2">
+                <div class="mb-3 text-left">
+                  <h4 class="font-heading font-bold text-base sm:text-lg text-ink flex items-center gap-2">
+                    <span>🧠</span> Texas TEKS Diagnostic Simulator
+                  </h4>
+                  <p class="text-xs text-ink/65">Solve real grade-level multi-step questions with instant step reasoning:</p>
+                </div>
+                <div id="staar-quiz-container"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column Spacer: Keeps the 3D Mascot on the right unobstructed while it gestures left -->
+        <div class="hidden lg:block lg:col-span-4 pointer-events-none min-h-[420px]"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: GRADE EXPLORER (GRADES 3 TO 8) (~62% to 78% Scroll) -->
+    <section id="grades" class="min-h-screen py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-col justify-center">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <!-- Left Column: Syllabus explorer placed where the mascot on the right is pointing -->
+        <div class="lg:col-span-8 space-y-6">
+          <div class="glass-panel p-6 sm:p-8 rounded-3xl border border-stone-200/80 shadow-md bg-white/95">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100 text-diyaGreen text-xs font-bold uppercase tracking-wider mb-2">
+              <span>📚</span> Grade Syllabi (Grades 3–8)
+            </div>
+            <h2 class="font-heading text-2xl sm:text-4xl font-bold text-ink mb-2">
+              Curriculum by Grade Level
+            </h2>
+            <p class="text-ink/80 text-xs sm:text-sm leading-relaxed mb-6">
+              Detailed R.S. Aggarwal units and key learning benchmarks for each grade. Select a grade to view topics and sample questions.
+            </p>
+
+            <!-- Container rendered dynamically by GradeExplorer class -->
+            <div id="grade-explorer-container"></div>
+          </div>
+        </div>
+
+        <!-- Right Column Spacer for Mascot on the right -->
+        <div class="hidden lg:block lg:col-span-4 pointer-events-none min-h-[420px]"></div>
       </div>
     </section>
 
