@@ -88,5 +88,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // 9. Diya Outro Single-Play Scroll Trigger
+  const diyaVideo = document.getElementById('diya-outro-video');
+  if (diyaVideo) {
+    let hasPlayed = false;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !hasPlayed) {
+          hasPlayed = true;
+          diyaVideo.play().catch(err => {
+            console.warn('Diya video autoplay interrupted:', err);
+          });
+          observer.unobserve(diyaVideo);
+        }
+      });
+    }, {
+      threshold: 0.2
+    });
+
+    observer.observe(diyaVideo);
+
+    // Freeze / rest on the final illuminated frame once complete
+    diyaVideo.addEventListener('ended', () => {
+      diyaVideo.pause();
+    });
+  }
+
   console.log('MathDiya 3D Scroll-Driven Experience Ready!');
 });

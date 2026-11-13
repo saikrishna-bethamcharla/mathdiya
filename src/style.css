@@ -62,6 +62,12 @@
   animation: gentleFloat 4s ease-in-out infinite;
 }
 
+/* Diya Outro Feathered Mask Blend */
+.diya-mask-blend {
+  mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+}
+
 /* Sticky 3D Background Canvas & Video */
 #hero-sticky-stage {
   position: sticky;
