@@ -53,8 +53,20 @@ export class MascotScrollEngine {
       this.progressBar.style.width = `${progress * 100}%`;
     }
 
-    // Map scroll progress to video time (0 to duration)
-    this.targetTime = progress * this.duration;
+    // Video handling: hide static logo intro during hero, fade in smoothly for mascot storytelling
+    if (this.video) {
+      if (progress < 0.08) {
+        this.video.style.opacity = '0';
+        this.targetTime = 0;
+      } else {
+        const fade = Math.min(1, (progress - 0.08) / 0.08);
+        this.video.style.opacity = (fade * 0.96).toFixed(3);
+        const activeProgress = (progress - 0.08) / 0.92;
+        this.targetTime = 2.5 + activeProgress * (this.duration - 2.6);
+      }
+    } else {
+      this.targetTime = progress * this.duration;
+    }
 
     // Update Three.js scroll progress
     if (this.three) {
