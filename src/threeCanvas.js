@@ -132,8 +132,8 @@ export class ThreeMathUniverse {
   }
 
   initDiyaParticles() {
-    // 300 floating diya golden sparkles
-    const particleCount = 260;
+    // Subtle ambient diya sparkles with reduced density for clean, non-distracting background
+    const particleCount = 65;
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
@@ -178,7 +178,7 @@ export class ThreeMathUniverse {
     const texture = new THREE.CanvasTexture(canvas);
 
     const material = new THREE.PointsMaterial({
-      size: 0.6,
+      size: 0.5,
       map: texture,
       transparent: true,
       vertexColors: true,
