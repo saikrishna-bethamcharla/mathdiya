@@ -51,12 +51,7 @@
 </head>
 <body class="bg-cream text-ink font-body selection:bg-diyaOrange/20 selection:text-ink relative">
 
-  <!-- Top Scroll Progress Bar -->
-  <div class="fixed top-0 left-0 right-0 h-1.5 z-50 bg-stone-200">
-    <div id="scroll-progress-fill" class="h-full bg-gradient-to-r from-diyaGreen via-glowGold to-diyaOrange w-0 transition-all duration-75"></div>
-  </div>
-
-  <!-- Announcement Bar -->
+  <!-- Announcement Bar (Flush Complete Fill to Top) -->
   <aside aria-label="Announcement" class="bg-ink text-white text-xs py-2 px-4 text-center font-medium relative z-40 border-b border-white/10">
     <div class="max-w-7xl mx-auto flex items-center justify-center gap-2 flex-wrap">
       <span class="px-2 py-0.5 rounded bg-diyaGreen text-[11px] font-bold tracking-wide uppercase">New for 2026/27</span>
@@ -118,6 +113,11 @@
           <span>Book Free Assessment Class</span>
         </button>
       </div>
+    </div>
+
+    <!-- Scroll Progress Indicator (Attached along header bottom border) -->
+    <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-transparent overflow-hidden pointer-events-none">
+      <div id="scroll-progress-fill" class="h-full bg-gradient-to-r from-diyaGreen via-glowGold to-diyaOrange w-0 transition-all duration-75"></div>
     </div>
   </header>
 
