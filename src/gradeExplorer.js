@@ -69,7 +69,7 @@ export class GradeExplorer {
               R.S. Aggarwal Foundation Units
             </h4>
             <div class="grid grid-cols-1 gap-2.5">
-              ${data.rsAggarwalUnits.slice(0, 3).map((u, i) => `
+              ${data.rsAggarwalUnits.slice(0, 4).map((u, i) => `
                 <div class="p-3.5 rounded-xl bg-emerald-50/50 border border-emerald-100 flex items-start gap-3">
                   <span class="w-6 h-6 rounded-lg bg-diyaGreen/15 text-diyaGreen flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">
                     0${i + 1}
