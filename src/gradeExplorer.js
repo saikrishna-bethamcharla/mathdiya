@@ -94,13 +94,12 @@ export class GradeExplorer {
               </ul>
             </div>
 
-            <!-- Interactive Sample Question -->
+            <!-- Sample Practice Problem -->
             <div class="p-6 rounded-2xl bg-white border border-stone-200 shadow-md">
               <div class="flex items-center justify-between mb-3">
                 <span class="text-xs font-bold uppercase tracking-wider text-diyaOrange flex items-center gap-1.5">
-                  <span>🎯</span> Try a Grade ${this.activeGrade} Question
+                  <span>📝</span> Grade ${this.activeGrade} Practice Problem
                 </span>
-                <span class="text-[11px] text-ink/50">Instant Feedback</span>
               </div>
               
               <p class="font-medium text-sm text-ink mb-4 leading-snug">${data.sampleQuestion.question}</p>

@@ -9,7 +9,6 @@ export class MascotScrollEngine {
     this.isReady = false;
     this.stageCards = document.querySelectorAll('[data-stage]');
     this.progressBar = document.getElementById('scroll-progress-fill');
-    this.currentPhaseIndicator = document.getElementById('phase-tag');
 
     this.initVideo();
     this.bindScroll();
@@ -67,26 +66,8 @@ export class MascotScrollEngine {
   }
 
   updateStages(progress) {
-    // Phase 1 (0.00 - 0.22): Identity & Welcome
-    // Phase 2 (0.22 - 0.48): The Mascot Leap & Core Pillars
-    // Phase 3 (0.48 - 0.74): Left Anchor -> Grade Explorer & STAAR Focus
-    // Phase 4 (0.74 - 1.00): Right Anchor -> 4-Step Pathway & Booking
-    let phaseName = "1. Light Up Math";
-    if (progress > 0.74) {
-      phaseName = "4. Path to Mastery & Booking";
-    } else if (progress > 0.48) {
-      phaseName = "3. Grades 3–8 & STAAR Readiness";
-    } else if (progress > 0.22) {
-      phaseName = "2. Meet Diya Dost & Pillars";
-    }
-
-    if (this.currentPhaseIndicator) {
-      this.currentPhaseIndicator.textContent = phaseName;
-    }
-
     // Toggle active classes on floating stage cue cards
     this.stageCards.forEach((card) => {
-      const stage = card.getAttribute('data-stage');
       const start = parseFloat(card.getAttribute('data-start') || '0');
       const end = parseFloat(card.getAttribute('data-end') || '1');
 
