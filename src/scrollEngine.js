@@ -54,32 +54,24 @@ export class MascotScrollEngine {
     }
 
     // Choreographed video timeline mapped directly to 50/50 frame section layouts:
-    // 0.00 - 0.16 (Hero): 0.0s -> 3.5s (3D Logo at center, mascot pops forward and jumps)
-    // 0.16 - 0.22 (Walking left): 3.5s -> 6.5s (Mascot walks to frame left)
-    // 0.22 - 0.48 (#curriculum - RIGHT HALF OF FRAME): 6.5s -> 9.8s (Mascot stays at frame LEFT pointing RIGHT)
-    // 0.48 - 0.54 (Walking right): 9.8s -> 12.0s (Mascot crosses over to frame right)
-    // 0.54 - 0.78 (#staar & #grades - LEFT HALF OF FRAME): 12.0s -> 14.8s (Mascot stays at frame RIGHT pointing LEFT)
-    // 0.78 - 1.00 (Reviews, Schedule, FAQ): 14.8s (Warm welcoming posture)
+    // 0.00 - 0.18 (Hero): 0.0s -> 3.5s (3D Logo at center, mascot pops forward and jumps)
+    // 0.18 - 0.24 (Walking left): 3.5s -> 6.5s (Mascot walks to frame left)
+    // 0.24 - 0.78 (#curriculum, #staar, #grades - ALL ON RIGHT HALF OF FRAME): 6.5s -> 12.8s (Mascot stays at frame LEFT pointing and presenting RIGHT)
+    // 0.78 - 1.00 (Reviews, Schedule, FAQ, Footer): 12.8s -> 14.8s (Warm welcoming posture)
     if (this.video) {
       this.video.style.opacity = '1';
-      if (progress < 0.16) {
-        const p = progress / 0.16;
+      if (progress < 0.18) {
+        const p = progress / 0.18;
         this.targetTime = p * 3.5;
-      } else if (progress < 0.22) {
-        const p = (progress - 0.16) / 0.06;
+      } else if (progress < 0.24) {
+        const p = (progress - 0.18) / 0.06;
         this.targetTime = 3.5 + p * 3.0; // 3.5s to 6.5s (walks to left)
-      } else if (progress < 0.48) {
-        const p = (progress - 0.22) / 0.26;
-        this.targetTime = 6.5 + p * 3.3; // 6.5s to 9.8s (STAYS AT FRAME LEFT)
-      } else if (progress < 0.54) {
-        const p = (progress - 0.48) / 0.06;
-        this.targetTime = 9.8 + p * 2.2; // 9.8s to 12.0s (walks to right)
       } else if (progress < 0.78) {
-        const p = (progress - 0.54) / 0.24;
-        this.targetTime = 12.0 + p * 2.8; // 12.0s to 14.8s (STAYS AT FRAME RIGHT)
+        const p = (progress - 0.24) / 0.54;
+        this.targetTime = 6.5 + p * 6.3; // 6.5s to 12.8s (STAYS AT FRAME LEFT, presenting right)
       } else {
         const p = Math.min(1, (progress - 0.78) / 0.22);
-        this.targetTime = 14.8 + p * 0.08;
+        this.targetTime = 12.8 + p * 2.0; // 12.8s to 14.8s (warm resting pose)
       }
     } else {
       this.targetTime = progress * this.duration;

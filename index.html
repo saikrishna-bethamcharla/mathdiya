@@ -316,67 +316,75 @@
     </section>
 
     <!-- SECTION 3: TEXAS MATH READINESS (STAAR & BEYOND) (~54% to 66% Scroll) -->
-    <!-- When mascot walks right & stays at frame right: FRONT SECTION IS ADJUSTED TO THE LEFT HALF OF THE FRAME -->
+    <!-- When mascot stays at frame left: FRONT SECTION IS ADJUSTED TO THE RIGHT HALF OF THE FRAME -->
     <section id="staar" class="min-h-screen py-16 px-4 sm:px-6 lg:px-8 max-w-[1600px] mx-auto flex items-center">
       <div class="grid grid-cols-1 lg:grid-cols-2 w-full items-center gap-8 lg:gap-12">
-        <!-- Left Half of Frame (50%): Content adjusted to the left half of the frame -->
+        <!-- Left Half of Frame (50%): Completely open for the background mascot standing at frame left -->
+        <div class="hidden lg:block pointer-events-none min-h-[480px]" aria-hidden="true"></div>
+
+        <!-- Right Half of Frame (50%): Content adjusted to the right half of the frame -->
         <div class="w-full">
-          <div class="glass-panel rounded-3xl p-6 sm:p-8 lg:p-10 border-2 border-diyaOrange/30 shadow-2xl relative overflow-hidden bg-white/95">
+          <div class="glass-panel rounded-3xl p-6 sm:p-8 lg:p-10 border border-diyaOrange/30 shadow-2xl relative overflow-hidden bg-white/95">
             <!-- Decorative Diya Glow Corner -->
             <div class="absolute -top-20 -right-20 w-60 h-60 bg-gradient-to-br from-glowGold/30 to-diyaOrange/20 rounded-full blur-3xl pointer-events-none"></div>
 
-            <div class="relative z-10 space-y-5">
+            <div class="relative z-10 space-y-6">
               <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-100 text-amber-900 text-xs font-bold uppercase tracking-wider">
-                <span class="w-1.5 h-1.5 rounded-full bg-amber-600"></span>
+                <span class="w-1.5 h-1.5 rounded-full bg-diyaOrange"></span>
                 <span>Texas Math Readiness (STAAR &amp; Beyond)</span>
               </div>
 
-              <h3 class="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold text-ink leading-tight">
-                Prepared for the Spring 2027 Texas Testing Transition.
-              </h3>
-
-              <div class="p-4 rounded-2xl bg-amber-50 border border-amber-200 text-xs sm:text-sm text-ink/80 leading-relaxed">
-                <strong class="text-diyaOrange block mb-1">Note for Texas Parents:</strong>
-                Spring 2027 is the final year of the single spring STAAR test for Grades 3–8. Texas is moving to three shorter progress tests during the year. Our curriculum is labeled “Texas Math Readiness (STAAR &amp; beyond)” so your child builds the problem-solving intuition required under either testing model.
+              <div>
+                <h3 class="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold text-ink leading-tight">
+                  Prepared for the Spring 2027 Texas Testing Transition.
+                </h3>
+                <p class="text-ink/80 text-xs sm:text-sm leading-relaxed mt-2.5">
+                  Spring 2027 is the final single-exam STAAR year before Texas adopts three progress tests during the term. MathDiya builds enduring conceptual intuition so students succeed under either format.
+                </p>
               </div>
 
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm">
-                <div class="p-3.5 rounded-xl bg-white border border-stone-200">
-                  <span class="font-bold text-diyaGreen block text-sm mb-1">Timed Confidence</span>
-                  <span class="text-ink/70">Mastering Texas inline questions, drag-and-drop, and grid-in answers.</span>
+              <!-- Key Pillars Strip -->
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                <div class="p-3 rounded-2xl bg-amber-50/80 border border-amber-200/80">
+                  <span class="font-bold text-diyaGreen block text-sm mb-0.5">100% TEKS</span>
+                  <span class="text-ink/70 text-[11px] leading-snug">Texas curriculum benchmarks</span>
                 </div>
-                <div class="p-3.5 rounded-xl bg-white border border-stone-200">
-                  <span class="font-bold text-diyaOrange block text-sm mb-1">TEKS Aligned</span>
-                  <span class="text-ink/70">Strict adherence to Texas Essential Knowledge and Skills benchmarks.</span>
+                <div class="p-3 rounded-2xl bg-amber-50/80 border border-amber-200/80">
+                  <span class="font-bold text-diyaOrange block text-sm mb-0.5">Timed Confidence</span>
+                  <span class="text-ink/70 text-[11px] leading-snug">Inline &amp; multi-step mastery</span>
+                </div>
+                <div class="p-3 rounded-2xl bg-amber-50/80 border border-amber-200/80">
+                  <span class="font-bold text-ink block text-sm mb-0.5">2027 Ready</span>
+                  <span class="text-ink/70 text-[11px] leading-snug">Interim progress checks</span>
                 </div>
               </div>
 
               <!-- Interactive Diagnostic Simulator -->
               <div class="pt-2">
-                <div class="mb-3 text-left">
+                <div class="flex items-center justify-between mb-3">
                   <h4 class="font-heading font-bold text-base sm:text-lg text-ink">
                     Texas TEKS Diagnostic Simulator
                   </h4>
-                  <p class="text-xs text-ink/65">Solve real grade-level multi-step questions with instant step reasoning:</p>
+                  <span class="text-xs text-ink/60 font-medium">3 Practice Questions</span>
                 </div>
                 <div id="staar-quiz-container"></div>
               </div>
             </div>
           </div>
         </div>
-
-        <!-- Right Half of Frame (50%): Completely open for the background mascot standing at frame right -->
-        <div class="hidden lg:block pointer-events-none min-h-[480px]" aria-hidden="true"></div>
       </div>
     </section>
 
     <!-- SECTION 4: GRADE EXPLORER (GRADES 3 TO 8) (~66% to 78% Scroll) -->
-    <!-- When mascot is at frame right: FRONT SECTION IS ADJUSTED TO THE LEFT HALF OF THE FRAME -->
+    <!-- When mascot stays at frame left: FRONT SECTION IS ADJUSTED TO THE RIGHT HALF OF THE FRAME -->
     <section id="grades" class="min-h-screen py-16 px-4 sm:px-6 lg:px-8 max-w-[1600px] mx-auto flex items-center">
       <div class="grid grid-cols-1 lg:grid-cols-2 w-full items-start gap-8 lg:gap-12">
-        <!-- Left Half of Frame (50%): Content adjusted to the left half of the frame -->
-        <div class="w-full space-y-6">
-          <div class="glass-panel p-6 sm:p-8 rounded-3xl border border-stone-200/80 shadow-xl bg-white/95">
+        <!-- Left Half of Frame (50%): Completely open for the background mascot standing at frame left -->
+        <div class="hidden lg:block pointer-events-none min-h-[480px]" aria-hidden="true"></div>
+
+        <!-- Right Half of Frame (50%): Content adjusted to the right half of the frame -->
+        <div class="w-full">
+          <div class="glass-panel p-6 sm:p-8 lg:p-10 rounded-3xl border border-stone-200/80 shadow-2xl bg-white/95 relative overflow-hidden">
             <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100 text-diyaGreen text-xs font-bold uppercase tracking-wider mb-2">
               <span class="w-1.5 h-1.5 rounded-full bg-diyaGreen"></span>
               <span>Grade Syllabi (Grades 3–8)</span>
@@ -385,16 +393,13 @@
               Curriculum by Grade Level
             </h2>
             <p class="text-ink/80 text-xs sm:text-sm leading-relaxed mb-6">
-              Detailed R.S. Aggarwal units and key learning benchmarks for each grade. Select a grade to view topics and sample questions.
+              R.S. Aggarwal foundations combined with Texas STAAR readiness. Select your child's grade to preview topics and sample problems.
             </p>
 
             <!-- Container rendered dynamically by GradeExplorer class -->
             <div id="grade-explorer-container"></div>
           </div>
         </div>
-
-        <!-- Right Half of Frame (50%): Completely open for the background mascot standing at frame right -->
-        <div class="hidden lg:block pointer-events-none min-h-[480px]" aria-hidden="true"></div>
       </div>
     </section>
 

@@ -49,28 +49,28 @@ export class StaarQuizSimulator {
   render() {
     const q = this.questions[this.currentIndex];
     this.container.innerHTML = `
-      <div class="quiz-card p-6 bg-white/95 rounded-2xl shadow-xl border border-diyaGreen/15">
-        <div class="flex items-center justify-between mb-4">
-          <span class="px-3 py-1 bg-cream rounded-full text-xs font-bold text-diyaGreen uppercase tracking-wider">${q.grade}</span>
+      <div class="quiz-card p-5 sm:p-6 bg-white/90 rounded-2xl border border-stone-200 shadow-sm space-y-4">
+        <div class="flex items-center justify-between">
+          <span class="px-2.5 py-1 bg-amber-100 rounded-full text-xs font-bold text-diyaOrange uppercase tracking-wider">${q.grade}</span>
           <span class="text-xs font-semibold text-ink/60">Question ${this.currentIndex + 1} of ${this.questions.length}</span>
         </div>
         
-        <h4 class="font-heading text-lg font-bold text-ink mb-4 leading-snug">${q.prompt}</h4>
+        <h4 class="font-heading text-base sm:text-lg font-bold text-ink leading-snug">${q.prompt}</h4>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4" id="quiz-options">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5" id="quiz-options">
           ${q.options.map((opt, idx) => `
-            <button type="button" class="quiz-option-btn text-left p-3.5 rounded-xl border-2 border-stone-200 hover:border-diyaOrange font-medium text-sm transition-all" data-correct="${opt.isCorrect}">
-              <span class="inline-block w-6 h-6 rounded-full bg-cream text-center font-bold text-xs leading-6 mr-2 text-ink">${String.fromCharCode(65 + idx)}</span>
+            <button type="button" class="quiz-option-btn text-left p-3 rounded-xl border-2 border-stone-200 hover:border-diyaOrange font-medium text-xs sm:text-sm transition-all" data-correct="${opt.isCorrect}">
+              <span class="inline-block w-5 h-5 rounded-md bg-stone-100 text-center font-bold text-xs leading-5 mr-2 text-ink">${String.fromCharCode(65 + idx)}</span>
               ${opt.text}
             </button>
           `).join('')}
         </div>
 
-        <div id="quiz-feedback" class="hidden p-4 rounded-xl text-sm leading-relaxed mb-4"></div>
+        <div id="quiz-feedback" class="hidden p-3.5 rounded-xl text-xs sm:text-sm leading-relaxed"></div>
 
         <div class="flex items-center justify-between pt-2 border-t border-stone-100">
           <span class="text-xs text-ink/60">Score: ${this.score}/${this.questions.length}</span>
-          <button type="button" id="quiz-next-btn" class="hidden px-5 py-2 rounded-xl bg-diyaGreen text-white text-xs font-bold uppercase tracking-wider hover:bg-diyaGreen/90 transition-all">
+          <button type="button" id="quiz-next-btn" class="hidden px-4 py-2 rounded-xl bg-diyaGreen text-white text-xs font-bold uppercase tracking-wider hover:bg-diyaGreen/90 transition-all">
             ${this.currentIndex < this.questions.length - 1 ? 'Next Question →' : 'See Summary →'}
           </button>
         </div>
