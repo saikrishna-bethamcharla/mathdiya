@@ -4,7 +4,21 @@ import { GradeExplorer } from './gradeExplorer.js';
 import { StaarQuizSimulator } from './staarQuiz.js';
 import { BookingModal } from './bookingModal.js';
 
+// 0. Disable browser automatic scroll restoration so page always reloads at the Hero section
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+window.scrollTo(0, 0);
+
+window.addEventListener('beforeunload', () => {
+  window.scrollTo(0, 0);
+});
+
 document.addEventListener('DOMContentLoaded', () => {
+  // Always ensure we start at the top on initial open or refresh
+  window.scrollTo(0, 0);
+  requestAnimationFrame(() => window.scrollTo(0, 0));
+
   // 1. Initialize 3D Universe
   let threeUniverse = null;
   try {
@@ -87,6 +101,30 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  // 9. Scroll to Top Floating Button
+  const scrollToTopBtn = document.getElementById('scroll-to-top-btn');
+  if (scrollToTopBtn) {
+    const toggleScrollBtn = () => {
+      if (window.scrollY > 350) {
+        scrollToTopBtn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-3');
+        scrollToTopBtn.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
+      } else {
+        scrollToTopBtn.classList.add('opacity-0', 'pointer-events-none', 'translate-y-3');
+        scrollToTopBtn.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+      }
+    };
+
+    window.addEventListener('scroll', toggleScrollBtn, { passive: true });
+    toggleScrollBtn();
+
+    scrollToTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
 
   console.log('MathDiya 3D Scroll-Driven Experience Ready!');
 });

@@ -22,6 +22,7 @@ export class MascotScrollEngine {
     this.initVideo();
     this.initDiyaVideo();
     this.bindScroll();
+    this.onScroll();
     this.renderLoop = this.renderLoop.bind(this);
     requestAnimationFrame(this.renderLoop);
   }
