@@ -1,4 +1,3 @@
-import './style.css';
 import { ThreeMathUniverse } from './threeCanvas.js';
 import { MascotScrollEngine } from './scrollEngine.js';
 import { GradeExplorer } from './gradeExplorer.js';

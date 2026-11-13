@@ -5,7 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MathDiya — Light Up Your Child's Math | Live Online Classes (Grades 3–8)</title>
   <meta name="description" content="Live online math classes for US students Grades 3–8. Rigorous R.S. Aggarwal conceptual depth combined with Texas Math Readiness (STAAR & beyond) in small groups of 5–8 students." />
-  <link rel="icon" type="image/png" href="/MathDiya-logo.png" />
+  <link rel="icon" type="image/png" href="./MathDiya-logo.png" />
+  <link rel="stylesheet" href="./src/style.css" />
+
+  <!-- Import map for standalone native ES module execution on static hosts like GitHub Pages -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "canvas-confetti": "https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.4/+esm"
+      }
+    }
+  </script>
 
   <!-- Google Fonts: Fredoka & Baloo 2 (Headings), Lexend & Nunito (Body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -62,7 +73,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       <!-- Logo -->
       <a href="#" class="flex items-center gap-2 group">
-        <img src="/MathDiya-logo.png" alt="MathDiya Logo" class="h-12 w-auto object-contain transition-transform group-hover:scale-105 duration-200" />
+        <img src="./MathDiya-logo.png" alt="MathDiya Logo" class="h-12 w-auto object-contain transition-transform group-hover:scale-105 duration-200" />
       </a>
 
       <!-- Desktop Navigation Links (Centered) -->
@@ -119,11 +130,11 @@
   <div id="hero-sticky-stage" aria-hidden="true">
     <video
       id="bg-video-element"
-      src="/mascot_scroll_opt.mp4"
+      src="./mascot_scroll_opt.mp4"
       playsinline
       muted
       preload="auto"
-      poster="/mascot_poster.png"
+      poster="./mascot_poster.png"
     ></video>
     <div id="three-canvas-container"></div>
   </div>
@@ -706,7 +717,7 @@
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-12 border-b border-white/10">
           <!-- Col 1 -->
           <div class="md:col-span-2 space-y-4">
-            <img src="/MathDiya-logo.png" alt="MathDiya Logo" class="h-10 w-auto brightness-0 invert opacity-90" />
+            <img src="./MathDiya-logo.png" alt="MathDiya Logo" class="h-10 w-auto brightness-0 invert opacity-90" />
             <p class="text-stone-300 text-xs sm:text-sm max-w-sm leading-relaxed">
               “Light up your child’s math” — live online cohorts for US students in Grades 3–8. Rigorous R.S. Aggarwal foundations combined with Texas Math Readiness (STAAR &amp; beyond).
             </p>
@@ -894,6 +905,6 @@
   </div>
 
   <!-- Vite Main Script Entry Point -->
-  <script type="module" src="/src/main.js"></script>
+  <script type="module" src="./src/main.js"></script>
 </body>
 </html>
