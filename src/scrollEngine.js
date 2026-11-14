@@ -39,13 +39,19 @@ export class MascotScrollEngine {
     };
 
     this.diyaVideo.addEventListener('loadedmetadata', onMeta);
-    this.diyaVideo.addEventListener('canplay', () => {
-      this.diyaReady = true;
+    this.diyaVideo.addEventListener('loadeddata', onMeta);
+    this.diyaVideo.addEventListener('canplay', onMeta);
+    this.diyaVideo.addEventListener('canplaythrough', onMeta);
+    this.diyaVideo.addEventListener('seeked', () => {
+      // Seek completed
     });
 
     if (this.diyaVideo.readyState >= 1) {
       onMeta();
     }
+    try {
+      this.diyaVideo.load();
+    } catch (e) {}
   }
 
   initVideo() {
@@ -61,13 +67,31 @@ export class MascotScrollEngine {
     };
 
     this.video.addEventListener('loadedmetadata', onMeta);
-    this.video.addEventListener('canplay', () => {
-      this.isReady = true;
+    this.video.addEventListener('loadeddata', onMeta);
+    this.video.addEventListener('canplay', onMeta);
+    this.video.addEventListener('canplaythrough', onMeta);
+    this.video.addEventListener('seeked', () => {
+      // Seek completed
     });
 
     if (this.video.readyState >= 1) {
       onMeta();
     }
+    try {
+      this.video.load();
+      // Prime decoder pipeline with silent micro-play to warm up GPU hardware decoder
+      const playPromise = this.video.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          this.video.pause();
+          this.isReady = true;
+          this.onScroll();
+        }).catch(() => {
+          // Autoplay policy prevented playback, metadata still active
+          this.isReady = true;
+        });
+      }
+    } catch (e) {}
   }
 
   bindScroll() {
@@ -176,12 +200,19 @@ export class MascotScrollEngine {
     // Smooth dampening interpolation for mascot video currentTime
     if (this.video && this.isReady) {
       const diff = this.targetTime - this.currentTime;
-      if (Math.abs(diff) > 0.003 && !this.video.seeking) {
+      if (Math.abs(diff) > 0.003) {
         this.currentTime += diff * this.lerpSpeed;
-        try {
-          this.video.currentTime = Math.max(0, Math.min(this.duration - 0.05, this.currentTime));
-        } catch (e) {
-          // video seek exception fallback
+        if (!this.video.seeking) {
+          const clamped = Math.max(0, Math.min(this.duration - 0.04, this.currentTime));
+          try {
+            if (typeof this.video.fastSeek === 'function') {
+              this.video.fastSeek(clamped);
+            } else {
+              this.video.currentTime = clamped;
+            }
+          } catch (e) {
+            this.video.currentTime = clamped;
+          }
         }
       }
     }
@@ -189,12 +220,19 @@ export class MascotScrollEngine {
     // Smooth dampening interpolation for Diya video currentTime (HyperFrames frame-by-frame scrub)
     if (this.diyaVideo && this.diyaReady) {
       const diff = this.diyaTargetTime - this.diyaCurrentTime;
-      if (Math.abs(diff) > 0.002 && !this.diyaVideo.seeking) {
+      if (Math.abs(diff) > 0.002) {
         this.diyaCurrentTime += diff * this.diyaLerpSpeed;
-        try {
-          this.diyaVideo.currentTime = Math.max(0, Math.min(this.diyaDuration - 0.03, this.diyaCurrentTime));
-        } catch (e) {
-          // video seek exception fallback
+        if (!this.diyaVideo.seeking) {
+          const clamped = Math.max(0, Math.min(this.diyaDuration - 0.03, this.diyaCurrentTime));
+          try {
+            if (typeof this.diyaVideo.fastSeek === 'function') {
+              this.diyaVideo.fastSeek(clamped);
+            } else {
+              this.diyaVideo.currentTime = clamped;
+            }
+          } catch (e) {
+            this.diyaVideo.currentTime = clamped;
+          }
         }
       }
     }
