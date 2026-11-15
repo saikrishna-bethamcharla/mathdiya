@@ -1,20 +1,20 @@
-# MathDiya — Light Up Your Child's Math 🪔
+# MathDiya — Light Up Your Child's Math
 
 > **Live online math classes for US students, Grades 3–8**  
-> Built with high-performance 3D scroll-driven video choreography, Three.js WebGL geometry, interactive grade syllabi, Texas Math Readiness (STAAR & beyond) simulator, and an intuitive US timezone booking engine.
+> Built with high-performance 3D scroll-driven video choreography, Three.js WebGL geometry, interactive grade syllabi (R.S. Aggarwal for Grades 3–5 & R.D. Sharma for Grades 6–8), multi-state test prep simulator (STAAR, CAASPP, FAST, NY State & Georgia Milestones), and an intuitive US timezone booking engine.
 
 ---
 
-## ✨ Features Built
+## Features Built
 
 1. **Scroll-Driven 3D Mascot Choreography ("Diya Dost")**
    - Synchronized timeline scrubbing of the 3D claymation mascot video (`public/mascot_scroll_opt.mp4`).
-   - Intra-frame keyframed MP4 (`-g 1`) for instantaneous, stutter-free frame seeking on scroll.
-   - Pinned 3D viewport that smoothly guides the parent across four choreographed stages:
+   - Intra-frame keyframed MP4 with faststart for instantaneous frame seeking on scroll.
+   - Pinned 3D viewport that smoothly guides the parent across choreographed stages:
      - **Stage 1 (0% - 25%)**: Brand identity, tagline *"Light up your child's math"*, and trust pillars.
      - **Stage 2 (25% - 50%)**: Diya Dost leaps forward, welcoming parents and kids with conceptual math values.
-     - **Stage 3 (50% - 75%)**: Diya Dost steps to the left and gestures right toward the **Grade Explorer** & **Texas Math Readiness** simulator.
-     - **Stage 4 (75% - 100%)**: Diya Dost steps to the right and presents the **4-Step Pathway** and **Booking Engine**.
+     - **Stage 3 (50% - 75%)**: Diya Dost steps to the left and gestures right toward the **Grade Explorer** & **State Assessment Readiness** simulator.
+     - **Stage 4 (75% - 100%)**: Diya Dost steps to the right and presents the **4-Step Pathway**, **Abacus Campus Program**, and **Booking Engine**.
 
 2. **Three.js WebGL Floating Geometry & Particle Universe**
    - Interactive 3D floating polyhedra: Icosahedron (20-face geometry), Octahedron, Torus (Pi/circular logic), and Math Pyramid with golden wireframes.
@@ -25,35 +25,37 @@
    - **Diya Green** (`#0A9155`): Headings, trust accents, and primary badges.
    - **Diya Orange** (`#F08A24`): Always-visible *"Book Free Class"* sticky CTA and energizing accents.
    - **Flame Red** (`#D7262B`): Visual highlights and alert badges.
-   - **Glow Gold** (`#F7C948`): Star ratings, reward accents, and flame glows.
+   - **Glow Gold** (`#F7C948`): Reward accents and flame glows.
    - **Cream** (`#FDF3E3`): Warm, soothing canvas background.
    - **Ink** (`#1F2A2E`): Readable, crisp typography.
    - **Fonts**: *Fredoka* & *Baloo 2* for rounded headings; *Lexend* & *Nunito* for body copy.
 
 4. **Interactive Grade Explorer (Grades 3 to 8)**
    - Tabbed navigation across Grades 3, 4, 5, 6, 7, and 8.
-   - Full R.S. Aggarwal 5-Unit breakdown per grade with focus areas.
-   - Texas STAAR & TEKS test alignment competencies.
+   - Curricula grounded in **R.S. Aggarwal for Grades 3–5** and **R.D. Sharma for Grades 6–8**.
+   - Aligned to US State standards (STAAR, CAASPP, FAST, NY State & Georgia Milestones).
    - Interactive grade-specific math challenges with instant step-by-step mathematical explanations and confetti celebrations.
    - Direct grade pre-selection into the booking modal.
 
-5. **Texas Math Readiness (STAAR & Beyond) Panel**
-   - Specifically built for Texas's transition up to Spring 2027 and the upcoming interim 3-check testing framework.
+5. **State Assessment Readiness (STAAR, CAASPP, FAST, NY State, Georgia Milestones)**
+   - Covers Texas STAAR (SST), California CAASPP, Florida FAST, New York State, and Georgia Milestones.
    - Live 3-question diagnostic quiz simulator with instant feedback and score recommendations.
 
 6. **Parent-Friendly 6-Field Booking Scheduler**
-   - Max 6 fields as specified in the brief: Parent Name, Student Name, Grade, Email, Phone/WhatsApp, and Timezone/Slot.
+   - Max 6 fields: Parent Name, Student Name, Grade, Email, Phone/WhatsApp, and Timezone/Slot.
    - Real-time US Timezone conversion (**EST**, **CST**, **MST**, **PST**).
    - Both modal popup and inline scheduler support.
    - Confetti celebration upon confirmation with student details summary.
 
-7. **Social Proof & Parent FAQ**
-   - Verified feedback from US parents in Frisco TX, Austin TX, Edison NJ, San Jose CA, and Naperville IL.
-   - Interactive accordion addressing cohort size (5–8 students), R.S. Aggarwal methodology, class recordings, and COPPA privacy.
+7. **Complementary Course: Abacus & Vedic Maths @ Abacus Campus**
+   - Online abacus and Vedic math training to build mental arithmetic speed and calculation agility alongside MathDiya's conceptual curriculum.
+
+8. **Strict Small Batches (Capped at 6 Students)**
+   - Personalized live instruction with direct digital notebook inspection.
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 - Node.js >= 18 (Tested on Node v24)
@@ -80,7 +82,7 @@ npm run preview
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 d:/Math Diya/

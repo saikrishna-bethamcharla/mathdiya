@@ -138,7 +138,7 @@ export class StaarQuizSimulator {
         <div class="bg-cream/60 p-4 rounded-xl text-left text-xs leading-relaxed text-ink/80 mb-5 border border-diyaOrange/20">
           <strong class="text-diyaOrange block mb-1 font-bold">Teacher Note:</strong>
           ${this.score === 3 
-            ? "Strong arithmetic and word-problem skills. In our 5–8 student cohorts, we build on this with multi-step reasoning and STAAR question strategies."
+            ? "Strong arithmetic and word-problem skills. In our small cohorts of up to 6 students, we build on this with multi-step reasoning and state exam question strategies (STAAR, CAASPP, FAST, NY & GA)."
             : "Good effort. Practicing the steps behind word problems and ratio setups in our weekly classes will help turn these into comfortable skills."}
         </div>
 

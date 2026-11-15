@@ -37,7 +37,7 @@ export class GradeExplorer {
             </span>
           </div>
           <h3 class="font-heading text-xl sm:text-2xl font-bold text-ink">
-            Grade ${this.activeGrade} Curriculum &amp; STAAR Mastery
+            Grade ${this.activeGrade} Curriculum &amp; State Assessment Mastery
           </h3>
           <p class="text-ink/75 text-xs sm:text-sm mt-1 leading-relaxed">
             ${data.heroDesc}
@@ -63,11 +63,16 @@ export class GradeExplorer {
       <!-- Tab Content Area -->
       ${this.activeTab === 'units' ? `
         <div class="space-y-4">
-          <!-- R.S. Aggarwal Conceptual Units -->
+          <!-- Text Book Foundation Units (R.S. Aggarwal for 3-5, R.D. Sharma for 6-8) -->
           <div class="space-y-2.5">
-            <h4 class="font-heading font-bold text-xs uppercase tracking-wider text-diyaGreen">
-              R.S. Aggarwal Foundation Units
-            </h4>
+            <div class="flex items-center justify-between">
+              <h4 class="font-heading font-bold text-xs uppercase tracking-wider text-diyaGreen">
+                ${data.textbookLabel || (this.activeGrade <= 5 ? 'R.S. Aggarwal Foundation Units' : 'R.D. Sharma Foundation Units')}
+              </h4>
+              <span class="text-[11px] font-semibold text-ink/60 bg-emerald-100/60 px-2 py-0.5 rounded-md">
+                ${data.textbook} Textbook Pedagogy
+              </span>
+            </div>
             <div class="grid grid-cols-1 gap-2.5">
               ${data.rsAggarwalUnits.slice(0, 4).map((u, i) => `
                 <div class="p-3.5 rounded-xl bg-emerald-50/50 border border-emerald-100 flex items-start gap-3">
@@ -83,10 +88,10 @@ export class GradeExplorer {
             </div>
           </div>
 
-          <!-- Texas Math Readiness Focus -->
+          <!-- Multi-State Math Readiness Focus -->
           <div class="p-4 rounded-2xl bg-amber-50/50 border border-amber-200/70">
             <h4 class="font-heading font-bold text-xs uppercase tracking-wider text-diyaOrange mb-2">
-              Texas STAAR &amp; Beyond Competencies
+              State Standards &amp; Test Readiness (STAAR • CAASPP • FAST • NY • GA)
             </h4>
             <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-ink/80">
               ${data.staarFocus.map(item => `

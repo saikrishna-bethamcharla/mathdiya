@@ -3,6 +3,8 @@ export const GRADE_CURRICULUM = {
     grade: "Grade 3",
     badge: "Foundational Problem Solving",
     ageRange: "Ages 8–9",
+    textbook: "R.S. Aggarwal",
+    textbookLabel: "R.S. Aggarwal Foundation Units (Grades 3–5)",
     heroDesc: "Students move past basic memorization to tackle multi-step word problems, place value, and visual fractions.",
     rsAggarwalUnits: [
       { title: "Number Sense & 4-Digit Operations", desc: "Place value to 10,000, expanded form, regrouping, and mental addition & subtraction strategies." },
@@ -12,7 +14,7 @@ export const GRADE_CURRICULUM = {
       { title: "Measurement & 2D Geometry", desc: "Perimeter calculations, US customary & metric units, time intervals, and money." }
     ],
     staarFocus: [
-      "Solving 1- and 2-step word problems (TEKS 3.4K, 3.5B)",
+      "Solving 1- and 2-step word problems (STAAR TEKS 3.4K, 3.5B & Common State Standards)",
       "Reading scaled pictographs, dot plots, and bar graphs",
       "Representing fractions between 0 and 1 on number lines",
       "Decomposing shapes to find perimeter without standard formulas"
@@ -29,6 +31,8 @@ export const GRADE_CURRICULUM = {
     grade: "Grade 4",
     badge: "Multi-Step Thinking",
     ageRange: "Ages 9–10",
+    textbook: "R.S. Aggarwal",
+    textbookLabel: "R.S. Aggarwal Foundation Units (Grades 3–5)",
     heroDesc: "Multi-digit multiplication, division with remainders, decimal place values, and angle measurements.",
     rsAggarwalUnits: [
       { title: "Multi-Digit Multiplication", desc: "Area models, standard algorithms, and estimation up to 4-digit by 1-digit and 2-digit by 2-digit." },
@@ -38,7 +42,7 @@ export const GRADE_CURRICULUM = {
       { title: "Angles & Geometric Properties", desc: "Using a protractor, finding adjacent angles, symmetry, and parallel vs. perpendicular lines." }
     ],
     staarFocus: [
-      "Interpreting remainders in real-world division problems (TEKS 4.4H)",
+      "Interpreting remainders in real-world division problems (STAAR TEKS 4.4H & CAASPP/FAST)",
       "Adding and subtracting fractions with like denominators",
       "Finding perimeter and area of rectangles using standard formulas",
       "Solving multi-step addition, subtraction, and multiplication word problems with strip diagrams"
@@ -55,6 +59,8 @@ export const GRADE_CURRICULUM = {
     grade: "Grade 5",
     badge: "Pre-Algebra Readiness",
     ageRange: "Ages 10–11",
+    textbook: "R.S. Aggarwal",
+    textbookLabel: "R.S. Aggarwal Foundation Units (Grades 3–5)",
     heroDesc: "Fractions with unlike denominators, decimal multiplication and division, volume, and coordinate graphing.",
     rsAggarwalUnits: [
       { title: "Fractions with Unlike Denominators", desc: "Finding the least common multiple, improper fractions, and fraction division." },
@@ -64,7 +70,7 @@ export const GRADE_CURRICULUM = {
       { title: "The Coordinate Plane", desc: "Plotting (x, y) coordinates in Quadrant I and graphing linear input-output tables." }
     ],
     staarFocus: [
-      "Multiplying and dividing whole numbers and fractions (TEKS 5.3I, 5.3L)",
+      "Multiplying and dividing whole numbers and fractions (STAAR TEKS 5.3I, 5.3L & NY/GA Standards)",
       "Evaluating numerical expressions following standard order of operations",
       "Solving volume problems using V = l × w × h and V = B × h",
       "Reading scatterplots and frequency tables"
@@ -81,6 +87,8 @@ export const GRADE_CURRICULUM = {
     grade: "Grade 6",
     badge: "Ratios & Integers",
     ageRange: "Ages 11–12",
+    textbook: "R.D. Sharma",
+    textbookLabel: "R.D. Sharma Advanced Units (Grades 6–8)",
     heroDesc: "Middle school fundamentals: ratios, unit rates, negative numbers, one-step equations, and data distributions.",
     rsAggarwalUnits: [
       { title: "Ratios, Rates & Proportions", desc: "Unit rates, ratio tables, scale factors, and price comparisons." },
@@ -90,7 +98,7 @@ export const GRADE_CURRICULUM = {
       { title: "Area & Surface Area", desc: "Parallelograms, triangles, trapezoids, and nets of 3D prisms and pyramids." }
     ],
     staarFocus: [
-      "Solving proportional relationships and unit rates (TEKS 6.4B, 6.5A)",
+      "Solving proportional relationships and unit rates (STAAR TEKS 6.4B & CAASPP/FAST/NY)",
       "Solving 1-step equations with integers and positive fractions/decimals",
       "Analyzing data using mean, median, IQR, and box plots",
       "Classifying rational numbers (integers, whole numbers, rational numbers)"
@@ -107,6 +115,8 @@ export const GRADE_CURRICULUM = {
     grade: "Grade 7",
     badge: "Proportional Reasoning",
     ageRange: "Ages 12–13",
+    textbook: "R.D. Sharma",
+    textbookLabel: "R.D. Sharma Advanced Units (Grades 6–8)",
     heroDesc: "Two-step linear equations, constant of proportionality, circles, and probability.",
     rsAggarwalUnits: [
       { title: "Two-Step Equations & Inequalities", desc: "Combining like terms, the distributive property, and solving multi-step equations." },
@@ -116,7 +126,7 @@ export const GRADE_CURRICULUM = {
       { title: "Financial Literacy", desc: "Simple interest, sales tax, markups, and percent error." }
     ],
     staarFocus: [
-      "Writing and solving 2-step equations and inequalities (TEKS 7.11A)",
+      "Writing and solving 2-step equations and inequalities (STAAR TEKS 7.11A & National Standards)",
       "Identifying constant rate of change and unit rates across tables and graphs",
       "Finding circumference and area of circles and composite shapes",
       "Calculating simple and compound interest"
@@ -133,6 +143,8 @@ export const GRADE_CURRICULUM = {
     grade: "Grade 8",
     badge: "Algebra 1 Prep",
     ageRange: "Ages 13–14",
+    textbook: "R.D. Sharma",
+    textbookLabel: "R.D. Sharma Advanced Units (Grades 6–8)",
     heroDesc: "Linear equations, systems, exponents, the Pythagorean theorem, and functions.",
     rsAggarwalUnits: [
       { title: "Linear Equations & Slope (y = mx + b)", desc: "Slope, y-intercepts, rate of change, and graphing from standard form." },
@@ -142,7 +154,7 @@ export const GRADE_CURRICULUM = {
       { title: "Transformational Geometry", desc: "Translations, rotations, reflections, and dilations using coordinate rules." }
     ],
     staarFocus: [
-      "Distinguishing linear proportional vs. non-proportional relationships (TEKS 8.5H, 8.4C)",
+      "Distinguishing linear proportional vs. non-proportional relationships (STAAR TEKS 8.5H & Multi-State Standards)",
       "Applying the Pythagorean theorem to 2D and 3D problems",
       "Interpreting scatter plots and trend lines",
       "Solving linear equations with variables on both sides"
