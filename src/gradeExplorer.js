@@ -7,7 +7,7 @@ export class GradeExplorer {
     if (!this.container) return;
 
     this.activeGrade = 3;
-    this.activeTab = 'units'; // 'units' | 'practice'
+    this.activeTab = 'units'; // 'units' | 'chapters' | 'practice'
     this.render();
   }
 
@@ -28,12 +28,15 @@ export class GradeExplorer {
       <!-- Grade Header Bar -->
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 mb-5 border-b border-stone-200">
         <div>
-          <div class="flex items-center gap-2 mb-1.5">
+          <div class="flex items-center gap-2 mb-1.5 flex-wrap">
             <span class="px-2.5 py-0.5 rounded-full bg-emerald-100 text-diyaGreen font-bold text-xs">
               ${data.grade} • ${data.ageRange}
             </span>
             <span class="px-2.5 py-0.5 rounded-full bg-orange-100 text-diyaOrange font-semibold text-xs">
               ${data.badge}
+            </span>
+            <span class="px-2.5 py-0.5 rounded-full bg-stone-100 text-ink/70 font-semibold text-xs">
+              ${data.duration} Structured Course
             </span>
           </div>
           <h3 class="font-heading text-xl sm:text-2xl font-bold text-ink">
@@ -50,13 +53,36 @@ export class GradeExplorer {
         </button>
       </div>
 
-      <!-- View Selector (Sub-tabs) -->
+      <!-- Course Architecture Metric Cards (From Parent Guide) -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-5 text-center">
+        <div class="p-2.5 rounded-xl bg-amber-50/70 border border-amber-200/70">
+          <div class="font-heading font-bold text-base sm:text-lg text-diyaOrange">8–10</div>
+          <div class="text-[11px] text-ink/70 font-medium">Months Duration</div>
+        </div>
+        <div class="p-2.5 rounded-xl bg-emerald-50/70 border border-emerald-200/70">
+          <div class="font-heading font-bold text-base sm:text-lg text-diyaGreen">2</div>
+          <div class="text-[11px] text-ink/70 font-medium">Classes a Week</div>
+        </div>
+        <div class="p-2.5 rounded-xl bg-orange-50/70 border border-orange-200/70">
+          <div class="font-heading font-bold text-base sm:text-lg text-diyaOrange">1 hr</div>
+          <div class="text-[11px] text-ink/70 font-medium">Per Live Class</div>
+        </div>
+        <div class="p-2.5 rounded-xl bg-stone-100 border border-stone-200">
+          <div class="font-heading font-bold text-base sm:text-lg text-ink">Monthly</div>
+          <div class="text-[11px] text-ink/70 font-medium">Progress Tests</div>
+        </div>
+      </div>
+
+      <!-- View Selector (3 Sub-tabs) -->
       <div class="flex items-center gap-2 p-1 bg-stone-100 rounded-xl mb-5 text-xs font-heading font-bold">
-        <button type="button" class="flex-1 py-2 px-3 rounded-lg transition-all ${this.activeTab === 'units' ? 'bg-white text-ink shadow-sm' : 'text-ink/60 hover:text-ink'}" data-sub-tab="units">
+        <button type="button" class="flex-1 py-2 px-2.5 rounded-lg transition-all text-center ${this.activeTab === 'units' ? 'bg-white text-ink shadow-sm' : 'text-ink/60 hover:text-ink'}" data-sub-tab="units">
           Core Syllabus &amp; Units
         </button>
-        <button type="button" class="flex-1 py-2 px-3 rounded-lg transition-all ${this.activeTab === 'practice' ? 'bg-white text-ink shadow-sm' : 'text-ink/60 hover:text-ink'}" data-sub-tab="practice">
-          Interactive Practice Problem
+        <button type="button" class="flex-1 py-2 px-2.5 rounded-lg transition-all text-center ${this.activeTab === 'chapters' ? 'bg-white text-ink shadow-sm' : 'text-ink/60 hover:text-ink'}" data-sub-tab="chapters">
+          Parent Guide &amp; Chapters (${data.chapters ? data.chapters.length : 0})
+        </button>
+        <button type="button" class="flex-1 py-2 px-2.5 rounded-lg transition-all text-center ${this.activeTab === 'practice' ? 'bg-white text-ink shadow-sm' : 'text-ink/60 hover:text-ink'}" data-sub-tab="practice">
+          Practice Problem
         </button>
       </div>
 
@@ -103,7 +129,7 @@ export class GradeExplorer {
             </ul>
           </div>
 
-          <!-- Weekly Schedule Banner -->
+          <!-- Live Timing Banner -->
           <div class="p-3 rounded-xl bg-cream border border-stone-200/80 flex items-center gap-3">
             <div class="w-7 h-7 rounded-lg bg-orange-100 text-diyaOrange flex items-center justify-center flex-shrink-0">
               <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
@@ -111,6 +137,61 @@ export class GradeExplorer {
             <div class="text-[11px] sm:text-xs">
               <span class="font-bold text-ink">Live Cohort Timing: </span>
               <span class="text-ink/75">${data.weeklySchedule}</span>
+            </div>
+          </div>
+        </div>
+      ` : this.activeTab === 'chapters' ? `
+        <!-- Chapter-by-Chapter Parent Guide Syllabus -->
+        <div class="space-y-4">
+          <!-- Guide Operational Rules -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div class="p-3.5 rounded-xl bg-emerald-50/70 border border-emerald-200/80">
+              <h5 class="font-heading font-bold text-xs text-diyaGreen uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>How We Track Progress</span>
+              </h5>
+              <ul class="text-[11px] text-ink/75 space-y-1 leading-snug">
+                <li>• <strong>Monthly test</strong> on that month's chapters.</li>
+                <li>• <strong>Score report shared</strong> with specific focus topics.</li>
+                <li>• <strong>Built-in revision classes</strong> to re-do errors.</li>
+                <li>• <strong>Mock paper &amp; final test</strong> covering whole course.</li>
+              </ul>
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-amber-50/70 border border-amber-200/80">
+              <h5 class="font-heading font-bold text-xs text-diyaOrange uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span>How Parents Can Help</span>
+              </h5>
+              <ul class="text-[11px] text-ink/75 space-y-1 leading-snug">
+                <li>• <strong>30–45 mins home practice</strong> after each class.</li>
+                <li>• <strong>Dedicated notebook</strong> kept only for this course.</li>
+                <li>• <strong>Regular attendance</strong> — classes build sequentially.</li>
+                <li>• <strong>Selected PDF practice material</strong> from MathDiya.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Full Chapter List -->
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <h4 class="font-heading font-bold text-xs uppercase tracking-wider text-ink">
+                Grade ${this.activeGrade} — Full Chapter-by-Chapter Course Plan
+              </h4>
+              <span class="text-[11px] text-ink/60 font-semibold">
+                8–10 Month Structured Progression
+              </span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-[360px] overflow-y-auto pr-1">
+              ${(data.chapters || []).map(ch => `
+                <div class="p-2.5 rounded-xl bg-white border border-stone-200 hover:border-diyaOrange/60 transition-all text-left">
+                  <div class="flex items-center gap-2 mb-1">
+                    <span class="px-2 py-0.5 rounded bg-stone-100 text-ink font-bold text-[10px] tracking-wide">${ch.num}</span>
+                    <span class="font-bold text-xs text-ink truncate">${ch.name}</span>
+                  </div>
+                  <p class="text-[11px] text-ink/70 leading-snug line-clamp-2">${ch.desc}</p>
+                </div>
+              `).join('')}
             </div>
           </div>
         </div>
