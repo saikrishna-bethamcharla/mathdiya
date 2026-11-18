@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 4. Initialize Texas Math Readiness (STAAR & Beyond) Simulator
   const staarQuiz = new StaarQuizSimulator('staar-quiz-container');
 
-  // 5. Initialize Parent Booking Modal
+  // 5. Initialize Parent Booking Modal & Local Leads Vault
   const bookingModal = new BookingModal();
   window.mathDiyaModal = bookingModal;
 
@@ -55,7 +55,69 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 7. FAQ Accordion Logic
+  // 7. Legal & Compliance Modal (Privacy / COPPA, Terms of Enrollment, Security)
+  const legalModal = document.getElementById('legal-modal');
+  const legalClose = document.getElementById('legal-modal-close');
+  const legalBackdrop = document.getElementById('legal-modal-backdrop');
+  const legalTabs = document.querySelectorAll('.legal-tab-btn');
+  const legalPanels = document.querySelectorAll('.legal-tab-panel');
+
+  const openLegalModal = (tabName = 'privacy') => {
+    if (!legalModal) return;
+    legalModal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+
+    // Switch active tab
+    legalTabs.forEach(btn => {
+      if (btn.getAttribute('data-tab') === tabName) {
+        btn.classList.add('bg-diyaOrange', 'text-white', 'shadow-sm');
+        btn.classList.remove('text-ink/70', 'hover:bg-stone-100');
+      } else {
+        btn.classList.remove('bg-diyaOrange', 'text-white', 'shadow-sm');
+        btn.classList.add('text-ink/70', 'hover:bg-stone-100');
+      }
+    });
+
+    legalPanels.forEach(panel => {
+      if (panel.id === `legal-panel-${tabName}`) {
+        panel.classList.remove('hidden');
+      } else {
+        panel.classList.add('hidden');
+      }
+    });
+  };
+
+  const closeLegalModal = () => {
+    if (!legalModal) return;
+    legalModal.classList.add('hidden');
+    document.body.style.overflow = '';
+  };
+
+  document.querySelectorAll('[data-open-legal]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const tab = btn.getAttribute('data-open-legal') || 'privacy';
+      openLegalModal(tab);
+    });
+  });
+
+  legalTabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.getAttribute('data-tab');
+      openLegalModal(tab);
+    });
+  });
+
+  if (legalClose) legalClose.addEventListener('click', closeLegalModal);
+  if (legalBackdrop) legalBackdrop.addEventListener('click', closeLegalModal);
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && legalModal && !legalModal.classList.contains('hidden')) {
+      closeLegalModal();
+    }
+  });
+
+  // 8. FAQ Accordion Logic
   const faqItems = document.querySelectorAll('.faq-item');
   faqItems.forEach(item => {
     const questionBtn = item.querySelector('.faq-question');
@@ -82,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 8. Smooth Anchor Scrolling with offset for sticky nav
+  // 9. Smooth Anchor Scrolling with offset for sticky nav
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       const targetId = this.getAttribute('href');
@@ -102,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 9. Scroll to Top Floating Button
+  // 10. Scroll to Top Floating Button
   const scrollToTopBtn = document.getElementById('scroll-to-top-btn');
   if (scrollToTopBtn) {
     const toggleScrollBtn = () => {
