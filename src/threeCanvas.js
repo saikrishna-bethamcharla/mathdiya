@@ -20,13 +20,13 @@ export class ThreeMathUniverse {
     this.container.appendChild(this.renderer.domElement);
 
     this.shapes = [];
+    this.clock = new THREE.Clock();
     this.particles = null;
     this.mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
     this.scrollProgress = 0;
 
     this.initLights();
     this.initGeometricShapes();
-    this.initDiyaParticles();
     this.initEvents();
     this.animate = this.animate.bind(this);
     this.animate();
@@ -52,142 +52,158 @@ export class ThreeMathUniverse {
     this.scene.add(goldLight);
   }
 
+
   initGeometricShapes() {
-    // 1. Math Diya Pyramid (Tetrahedron with golden wireframe + solid core)
-    const pyramidGeo = new THREE.ConeGeometry(1.6, 2.4, 4);
-    const pyramidMat = new THREE.MeshStandardMaterial({
-      color: 0xF08A24,
-      roughness: 0.25,
-      metalness: 0.4,
-      transparent: true,
-      opacity: 0.85
-    });
-    const pyramidMesh = new THREE.Mesh(pyramidGeo, pyramidMat);
-    pyramidMesh.position.set(-12, 5, -4);
-    this.scene.add(pyramidMesh);
-    this.shapes.push({ mesh: pyramidMesh, rotSpeedX: 0.008, rotSpeedY: 0.012, baseX: -12, baseY: 5 });
 
-    // 2. Icosahedron (20 faces - Grade 6-8 geometry)
-    const icosaGeo = new THREE.IcosahedronGeometry(1.8, 0);
-    const icosaMat = new THREE.MeshStandardMaterial({
-      color: 0x0A9155,
-      roughness: 0.3,
-      metalness: 0.2,
-      wireframe: false,
-      transparent: true,
-      opacity: 0.82
-    });
-    const icosaMesh = new THREE.Mesh(icosaGeo, icosaMat);
-    icosaMesh.position.set(13, 4, -5);
-    
-    // Wireframe overlay for mathematical precision
-    const wireMat = new THREE.MeshBasicMaterial({ color: 0xF7C948, wireframe: true });
-    const wireMesh = new THREE.Mesh(icosaGeo, wireMat);
-    wireMesh.scale.setScalar(1.02);
-    icosaMesh.add(wireMesh);
+    this.shapes = [];
 
-    this.scene.add(icosaMesh);
-    this.shapes.push({ mesh: icosaMesh, rotSpeedX: -0.01, rotSpeedY: 0.007, baseX: 13, baseY: 4 });
-
-    // 3. Octahedron (Grade 4-5 symmetry)
-    const octaGeo = new THREE.OctahedronGeometry(1.4, 0);
-    const octaMat = new THREE.MeshStandardMaterial({
-      color: 0xF7C948,
-      roughness: 0.2,
-      metalness: 0.5,
-      transparent: true,
-      opacity: 0.88
-    });
-    const octaMesh = new THREE.Mesh(octaGeo, octaMat);
-    octaMesh.position.set(-10, -6, -2);
-    this.scene.add(octaMesh);
-    this.shapes.push({ mesh: octaMesh, rotSpeedX: 0.012, rotSpeedY: -0.008, baseX: -10, baseY: -6 });
-
-    // 4. Torus (Infinite circle / Pi concept)
-    const torusGeo = new THREE.TorusGeometry(1.6, 0.45, 16, 50);
-    const torusMat = new THREE.MeshStandardMaterial({
-      color: 0xD7262B,
-      roughness: 0.35,
-      metalness: 0.3,
-      transparent: true,
-      opacity: 0.8
-    });
-    const torusMesh = new THREE.Mesh(torusGeo, torusMat);
-    torusMesh.position.set(11, -7, -3);
-    this.scene.add(torusMesh);
-    this.shapes.push({ mesh: torusMesh, rotSpeedX: 0.015, rotSpeedY: 0.01, baseX: 11, baseY: -7 });
-
-    // 5. Dodecahedron (12 pentagonal faces - advanced logic)
-    const dodecaGeo = new THREE.DodecahedronGeometry(1.3, 0);
-    const dodecaMat = new THREE.MeshStandardMaterial({
-      color: 0x0A9155,
-      wireframe: true,
-      transparent: true,
-      opacity: 0.7
-    });
-    const dodecaMesh = new THREE.Mesh(dodecaGeo, dodecaMat);
-    dodecaMesh.position.set(-14, -1, -6);
-    this.scene.add(dodecaMesh);
-    this.shapes.push({ mesh: dodecaMesh, rotSpeedX: -0.006, rotSpeedY: -0.009, baseX: -14, baseY: -1 });
-  }
-
-  initDiyaParticles() {
-    // Subtle ambient diya sparkles with reduced density for clean, non-distracting background
-    const particleCount = 65;
-    const geometry = new THREE.BufferGeometry();
-    const positions = new Float32Array(particleCount * 3);
-    const colors = new Float32Array(particleCount * 3);
-    const scales = new Float32Array(particleCount);
-
-    const colorPalette = [
-      new THREE.Color(0xF08A24), // Diya Orange
-      new THREE.Color(0xF7C948), // Glow Gold
-      new THREE.Color(0x0A9155), // Diya Green
-      new THREE.Color(0xD7262B)  // Flame Red
+    const symbolTypes = [
+      "plus",
+      "minus",
+      "multiply",
+      "divide"
     ];
 
-    for (let i = 0; i < particleCount; i++) {
-      positions[i * 3] = (Math.random() - 0.5) * 45;
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 30;
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 20;
+    const colors = [
+      0xF08A24, // Orange
+      0x0A9155, // Green
+      0xF7C948, // Gold
+      0xD7262B  // Red
+    ];
 
-      const c = colorPalette[Math.floor(Math.random() * colorPalette.length)];
-      colors[i * 3] = c.r;
-      colors[i * 3 + 1] = c.g;
-      colors[i * 3 + 2] = c.b;
+    // Create 24 floating mathematical symbols
+    for (let i = 0; i < 24; i++) {
 
-      scales[i] = Math.random() * 0.4 + 0.1;
+      const type = symbolTypes[i % symbolTypes.length];
+      const color = colors[i % colors.length];
+
+      const group = new THREE.Group();
+
+      const scale = 0.55 + Math.random() * 0.35;
+
+      const material = new THREE.MeshStandardMaterial({
+        color: color,
+        roughness: 0.3,
+        metalness: 0.35
+      });
+
+      // Create rectangular bars
+      const addBar = (width, height, x, y, rotation = 0) => {
+
+        const geometry = new THREE.BoxGeometry(
+          width,
+          height,
+          0.18
+        );
+
+        const mesh = new THREE.Mesh(geometry, material);
+
+        mesh.position.set(x, y, 0);
+        mesh.rotation.z = rotation;
+
+        group.add(mesh);
+      };
+
+      // Create division dots
+      const addDot = (x, y) => {
+
+        const geometry = new THREE.CircleGeometry(
+          0.13 * scale,
+          24
+        );
+
+        const mesh = new THREE.Mesh(geometry, material);
+
+        mesh.position.set(x, y, 0.02);
+
+        group.add(mesh);
+      };
+
+      // PLUS (+)
+      if (type === "plus") {
+
+        addBar(1.5 * scale, 0.2 * scale, 0, 0);
+        addBar(0.2 * scale, 1.5 * scale, 0, 0);
+
+      }
+
+      // MINUS (-)
+      else if (type === "minus") {
+
+        addBar(1.5 * scale, 0.2 * scale, 0, 0);
+
+      }
+
+      // MULTIPLICATION (×)
+      else if (type === "multiply") {
+
+        addBar(
+          1.7 * scale,
+          0.2 * scale,
+          0, 0,
+          Math.PI / 4
+        );
+
+        addBar(
+          1.7 * scale,
+          0.2 * scale,
+          0, 0,
+          -Math.PI / 4
+        );
+
+      }
+
+      // DIVISION (÷)
+      else if (type === "divide") {
+
+        addBar(1.5 * scale, 0.2 * scale, 0, 0);
+
+        addDot(0, 0.42 * scale);
+        addDot(0, -0.42 * scale);
+
+      }
+
+      // Calculate visible camera area
+      const z = -2 - Math.random() * 3;
+
+      const distance = this.camera.position.z - z;
+
+      const viewHeight =
+        2 * Math.tan(
+          THREE.MathUtils.degToRad(this.camera.fov / 2)
+        ) * distance;
+
+      const viewWidth = viewHeight * this.camera.aspect;
+
+      const halfWidth = viewWidth / 2 - 1;
+      const halfHeight = viewHeight / 2 - 1;
+
+      // Random starting position
+      const x = (Math.random() * 2 - 1) * halfWidth;
+      const y = (Math.random() * 2 - 1) * halfHeight;
+
+      group.position.set(x, y, z);
+
+      // IMPORTANT: Keep symbols facing the camera
+      // No X, Y or Z animation rotation
+
+      this.scene.add(group);
+
+      this.shapes.push({
+
+        mesh: group,
+
+        // Random movement speed
+        velocityX: (0.4 + Math.random() * 0.7) *
+          (Math.random() > 0.5 ? 1 : -1),
+
+        velocityY: (0.3 + Math.random() * 0.6) *
+          (Math.random() > 0.5 ? 1 : -1)
+
+      });
+
     }
 
-    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-
-    // Particle texture
-    const canvas = document.createElement('canvas');
-    canvas.width = 32;
-    canvas.height = 32;
-    const ctx = canvas.getContext('2d');
-    const grad = ctx.createRadialGradient(16, 16, 0, 16, 16, 16);
-    grad.addColorStop(0, 'rgba(255, 255, 255, 1)');
-    grad.addColorStop(0.3, 'rgba(247, 201, 72, 0.9)');
-    grad.addColorStop(0.7, 'rgba(240, 138, 36, 0.4)');
-    grad.addColorStop(1, 'rgba(240, 138, 36, 0)');
-    ctx.fillStyle = grad;
-    ctx.fillRect(0, 0, 32, 32);
-
-    const texture = new THREE.CanvasTexture(canvas);
-
-    const material = new THREE.PointsMaterial({
-      size: 0.5,
-      map: texture,
-      transparent: true,
-      vertexColors: true,
-      blending: THREE.AdditiveBlending,
-      depthWrite: false
-    });
-
-    this.particles = new THREE.Points(geometry, material);
-    this.scene.add(this.particles);
   }
 
   initEvents() {
@@ -206,44 +222,88 @@ export class ThreeMathUniverse {
   updateScroll(progress) {
     this.scrollProgress = progress; // 0 to 1
   }
-
+  
   animate() {
+
     requestAnimationFrame(this.animate);
 
-    // Mouse parallax easing
-    this.mouse.x += (this.mouse.targetX - this.mouse.x) * 0.05;
-    this.mouse.y += (this.mouse.targetY - this.mouse.y) * 0.05;
+    // Mouse parallax
+    this.mouse.x +=
+      (this.mouse.targetX - this.mouse.x) * 0.05;
 
-    // Camera reacts to mouse & scroll
+    this.mouse.y +=
+      (this.mouse.targetY - this.mouse.y) * 0.05;
+
+    // Camera movement
     this.camera.position.x = this.mouse.x * 1.5;
     this.camera.position.y = this.mouse.y * 1.2;
 
     const time = performance.now() * 0.001;
 
-    // Rotate and bob each mathematical shape
-    this.shapes.forEach((item, idx) => {
-      item.mesh.rotation.x += item.rotSpeedX;
-      item.mesh.rotation.y += item.rotSpeedY;
+    // Time-based smooth movement
+    const delta = Math.min(
+      this.clock.getDelta(),
+      0.05
+    );
 
-      // Gentle floating sine motion
-      const bob = Math.sin(time + idx) * 0.4;
-      item.mesh.position.y = item.baseY + bob + (this.scrollProgress * 2.5);
+    // Move all mathematical symbols
+    this.shapes.forEach((item) => {
 
-      // Scroll responsive drift
-      item.mesh.position.x = item.baseX + Math.sin(time * 0.5 + idx) * 0.3;
+      const distance =
+        this.camera.position.z - item.mesh.position.z;
+
+      const viewHeight =
+        2 * Math.tan(
+          THREE.MathUtils.degToRad(this.camera.fov / 2)
+        ) * distance;
+
+      const viewWidth =
+        viewHeight * this.camera.aspect;
+
+      const halfWidth = viewWidth / 2 - 0.8;
+      const halfHeight = viewHeight / 2 - 0.8;
+
+      // Move horizontally
+      item.mesh.position.x += item.velocityX * delta;
+
+      // Move vertically
+      item.mesh.position.y += item.velocityY * delta;
+
+      // Bounce from left and right boundaries
+      if (item.mesh.position.x >= halfWidth) {
+        item.mesh.position.x = halfWidth;
+        item.velocityX = -Math.abs(item.velocityX);
+      }
+
+      if (item.mesh.position.x <= -halfWidth) {
+        item.mesh.position.x = -halfWidth;
+        item.velocityX = Math.abs(item.velocityX);
+      }
+
+      // Bounce from top and bottom boundaries
+      if (item.mesh.position.y >= halfHeight) {
+        item.mesh.position.y = halfHeight;
+        item.velocityY = -Math.abs(item.velocityY);
+      }
+
+      if (item.mesh.position.y <= -halfHeight) {
+        item.mesh.position.y = -halfHeight;
+        item.velocityY = Math.abs(item.velocityY);
+      }
+
+      // No rotation: symbols always face camera
+
     });
 
-    // Animate glowing diya particles
-    if (this.particles) {
-      this.particles.rotation.y = time * 0.04 + this.scrollProgress * 0.8;
-      this.particles.rotation.x = time * 0.02;
-    }
-
-    // Pulse the diya flame point light
+    // Diya light animation
     if (this.diyaLight) {
-      this.diyaLight.intensity = 2.2 + Math.sin(time * 4) * 0.5;
+      this.diyaLight.intensity =
+        2.2 + Math.sin(time * 4) * 0.5;
     }
 
+    // Render scene
     this.renderer.render(this.scene, this.camera);
+
   }
+
 }
