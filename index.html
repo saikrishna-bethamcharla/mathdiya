@@ -798,10 +798,6 @@
         <div class="pt-6 flex flex-col md:flex-row items-center justify-between text-xs text-ink/70 gap-4">
           <div class="flex items-center gap-3">
             <span>© 2026 MathDiya Education (mathdiya.com). All rights reserved.</span>
-            <button type="button" id="open-vault-btn" class="text-[11px] text-ink/50 hover:text-diyaGreen transition-colors flex items-center gap-1 font-mono" title="Teacher Lead Vault (Local CRM)">
-              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-              <span>Vault</span>
-            </button>
           </div>
 
           <!-- Powered by zAI Labs (Integrated Glossy Element, All Caps) -->
@@ -821,6 +817,7 @@
             <button type="button" data-open-legal="privacy" class="hover:text-diyaOrange transition-colors">Privacy Policy</button>
             <button type="button" data-open-legal="terms" class="hover:text-diyaOrange transition-colors">Terms of Enrollment</button>
             <button type="button" data-open-legal="security" class="hover:text-diyaOrange transition-colors">Security</button>
+            <button type="button" data-open-legal="cookies" class="hover:text-diyaOrange transition-colors">Cookie Policy</button>
           </div>
         </div>
 
@@ -980,15 +977,18 @@
         </p>
 
         <!-- Tab Switcher -->
-        <div class="flex gap-2 mt-4 bg-stone-100 p-1 rounded-xl text-xs font-bold">
-          <button type="button" class="legal-tab-btn flex-1 py-2 px-3 rounded-lg text-center transition-all bg-diyaOrange text-white shadow-sm" data-tab="privacy">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-1.5 mt-4 bg-stone-100 p-1.5 rounded-xl text-xs font-bold">
+          <button type="button" class="legal-tab-btn py-2 px-2.5 rounded-lg text-center transition-all bg-diyaOrange text-white shadow-sm" data-tab="privacy">
             Privacy &amp; COPPA
           </button>
-          <button type="button" class="legal-tab-btn flex-1 py-2 px-3 rounded-lg text-center transition-all text-ink/70 hover:bg-stone-100" data-tab="terms">
+          <button type="button" class="legal-tab-btn py-2 px-2.5 rounded-lg text-center transition-all text-ink/70 hover:bg-stone-100" data-tab="terms">
             Terms of Enrollment
           </button>
-          <button type="button" class="legal-tab-btn flex-1 py-2 px-3 rounded-lg text-center transition-all text-ink/70 hover:bg-stone-100" data-tab="security">
+          <button type="button" class="legal-tab-btn py-2 px-2.5 rounded-lg text-center transition-all text-ink/70 hover:bg-stone-100" data-tab="security">
             Platform Security
+          </button>
+          <button type="button" class="legal-tab-btn py-2 px-2.5 rounded-lg text-center transition-all text-ink/70 hover:bg-stone-100" data-tab="cookies">
+            Cookie Policy
           </button>
         </div>
       </div>
@@ -1049,6 +1049,34 @@
         <h4 class="font-heading font-bold text-base text-ink">3. Content Security Policy (CSP)</h4>
         <p>
           Our web client enforces strict browser Content Security Policy headers restricting unauthorized script executions and preventing cross-site scripting (XSS).
+        </p>
+      </div>
+
+      <!-- Tab 4: Cookie Policy -->
+      <div id="legal-panel-cookies" class="legal-tab-panel hidden space-y-4 text-xs sm:text-sm text-ink/80 leading-relaxed">
+        <div class="p-3 bg-amber-50 rounded-xl border border-amber-200 text-amber-900 font-semibold text-xs">
+          Notice: MathDiya uses strictly essential, privacy-first functional storage. We do not use third-party advertising cookies, cross-site trackers, or behavioral profiling.
+        </div>
+        <h4 class="font-heading font-bold text-base text-ink">1. What are Cookies and Local Storage?</h4>
+        <p>
+          Cookies and modern browser storage (LocalStorage) are small files placed on your device to enable smooth website functionality, such as remembering your selected US time zone (EST/CST/MST/PST) during booking and maintaining fast page load speeds.
+        </p>
+        <h4 class="font-heading font-bold text-base text-ink">2. Zero Third-Party Advertising Cookies</h4>
+        <p>
+          We do not allow marketing networks, behavioral ad trackers, or third-party cookies on MathDiya. Your browsing activity on this website is private and is never tracked across other websites or sold to data brokers.
+        </p>
+        <h4 class="font-heading font-bold text-base text-ink">3. Essential Functional Storage Only</h4>
+        <p>
+          Our web client only stores essential, non-invasive session data:
+        </p>
+        <ul class="list-disc pl-5 space-y-1 text-ink/75">
+          <li><strong>Time Zone Preference:</strong> Remembers your preferred class schedule time zone so class timings display accurately.</li>
+          <li><strong>Booking State:</strong> Temporarily holds your chosen diagnostic grade and slot so your confirmation generates smoothly.</li>
+          <li><strong>Security Tokens:</strong> Prevents automated spam submissions and protects form integrity.</li>
+        </ul>
+        <h4 class="font-heading font-bold text-base text-ink">4. How Parents Can Manage Storage</h4>
+        <p>
+          Parents can freely clear cookies and browser cache at any time through their browser settings (Chrome, Safari, Firefox, Edge). Because MathDiya does not rely on invasive tracking cookies, doing so will never affect your child's learning or account standing.
         </p>
       </div>
     </div>
