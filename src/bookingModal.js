@@ -22,6 +22,7 @@ export class BookingModal {
     };
 
     this.lastBooking = null;
+    this.lastSubmitTime = 0;
 
     this.init();
     this.initVault();
@@ -92,6 +93,13 @@ export class BookingModal {
       this.modalForm.addEventListener('submit', (e) => {
         e.preventDefault();
         
+        // Anti-spam submission throttle (8s)
+        const now = Date.now();
+        if (now - this.lastSubmitTime < 8000) {
+          alert('A booking inquiry was recently sent. Please wait a moment before sending another.');
+          return;
+        }
+
         // Honeypot check for bots
         const hp = document.getElementById('field-hp')?.value;
         if (hp) {
@@ -107,6 +115,7 @@ export class BookingModal {
 
         if (!this.validateInputs(pName, sName, pEmail, pPhone)) return;
 
+        this.lastSubmitTime = now;
         this.saveBooking({ parentName: pName, studentName: sName, grade: sGrade, email: pEmail, phone: pPhone });
         this.displaySuccess(pName, sName, sGrade, pEmail, pPhone);
       });
@@ -116,6 +125,13 @@ export class BookingModal {
     if (this.inlineForm) {
       this.inlineForm.addEventListener('submit', (e) => {
         e.preventDefault();
+
+        // Anti-spam submission throttle (8s)
+        const now = Date.now();
+        if (now - this.lastSubmitTime < 8000) {
+          alert('A booking inquiry was recently sent. Please wait a moment before sending another.');
+          return;
+        }
 
         // Honeypot check for bots
         const hp = document.getElementById('inline-field-hp')?.value;
@@ -132,6 +148,7 @@ export class BookingModal {
 
         if (!this.validateInputs(pName, sName, pEmail, pPhone)) return;
 
+        this.lastSubmitTime = now;
         this.saveBooking({ parentName: pName, studentName: sName, grade: sGrade, email: pEmail, phone: pPhone });
         this.open();
         this.displaySuccess(pName, sName, sGrade, pEmail, pPhone);
@@ -325,7 +342,7 @@ export class BookingModal {
     }
   }
 
-  // Teacher / Admin Lead Vault (Stored Locally with CSV Export)
+  // Teacher / Admin Lead Vault (Stored Locally with CSV Export & Confidentiality PIN Gate)
   initVault() {
     const vaultModal = document.getElementById('lead-vault-modal');
     const openVaultBtn = document.getElementById('open-vault-btn');
@@ -333,21 +350,67 @@ export class BookingModal {
     const exportCsvBtn = document.getElementById('export-vault-csv');
     const clearVaultBtn = document.getElementById('clear-vault-btn');
     const vaultBackdrop = document.getElementById('vault-modal-backdrop');
+    const pinGate = document.getElementById('vault-pin-gate');
+    const contentPanel = document.getElementById('vault-content-panel');
+    const pinInput = document.getElementById('vault-pin-input');
+    const pinSubmit = document.getElementById('vault-pin-submit');
+    const pinError = document.getElementById('vault-pin-error');
 
-    // Shortcut: Ctrl + Shift + L to open vault anywhere
+    const openVaultSecurely = () => {
+      if (!vaultModal) return;
+      vaultModal.classList.remove('hidden');
+      const isAuth = sessionStorage.getItem('mathdiya_vault_auth') === 'true';
+      if (isAuth) {
+        if (pinGate) pinGate.classList.add('hidden');
+        if (contentPanel) contentPanel.classList.remove('hidden');
+        this.renderVault();
+      } else {
+        if (pinGate) pinGate.classList.remove('hidden');
+        if (contentPanel) contentPanel.classList.add('hidden');
+        if (pinInput) {
+          pinInput.value = '';
+          setTimeout(() => pinInput.focus(), 100);
+        }
+      }
+    };
+
+    // Shortcut: Ctrl + Shift + L to open vault securely
     window.addEventListener('keydown', (e) => {
       if (e.ctrlKey && e.shiftKey && (e.key === 'L' || e.key === 'l')) {
         e.preventDefault();
-        this.renderVault();
-        if (vaultModal) vaultModal.classList.remove('hidden');
+        openVaultSecurely();
       }
     });
 
-    if (openVaultBtn && vaultModal) {
+    if (openVaultBtn) {
       openVaultBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        this.renderVault();
-        vaultModal.classList.remove('hidden');
+        openVaultSecurely();
+      });
+    }
+
+    if (pinSubmit && pinInput) {
+      const handlePin = () => {
+        const val = pinInput.value.trim();
+        if (val === '2026') {
+          sessionStorage.setItem('mathdiya_vault_auth', 'true');
+          if (pinError) pinError.classList.add('hidden');
+          if (pinGate) pinGate.classList.add('hidden');
+          if (contentPanel) contentPanel.classList.remove('hidden');
+          this.renderVault();
+        } else {
+          if (pinError) pinError.classList.remove('hidden');
+          pinInput.value = '';
+          pinInput.focus();
+        }
+      };
+
+      pinSubmit.addEventListener('click', handlePin);
+      pinInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          handlePin();
+        }
       });
     }
 
