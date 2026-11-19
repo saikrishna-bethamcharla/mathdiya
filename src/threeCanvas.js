@@ -105,8 +105,8 @@ export class ThreeMathUniverse {
         { x: -11.5 * aspectScale, y: 4.6, z: -3.5, opacity: 0.8, scale: 0.75 },
         // Far Left Wing
         { x: -14.5 * aspectScale, y: 2.0, z: -6.5, opacity: 0.55, scale: 0.65 },
-        // Open Middle Belt (Left of center, cleanly between subtitle and MathDiya logo)
-        { x: -5.6 * aspectScale, y: 2.1, z: -4.0, opacity: 0.75, scale: 0.70 },
+        // Open Middle Belt (Left of center, cleanly framing the top headline)
+        { x: -8.2 * aspectScale, y: 2.2, z: -4.0, opacity: 0.75, scale: 0.70 },
         // Mid-Left Wing (directly left of the Diya lamp)
         { x: -12.0 * aspectScale, y: -0.6, z: -4.5, opacity: 0.70, scale: 0.70 },
         // Lower-Left Flanks (to the left of CTA buttons)
@@ -117,8 +117,8 @@ export class ThreeMathUniverse {
         { x: 11.5 * aspectScale, y: 4.6, z: -3.5, opacity: 0.8, scale: 0.75 },
         // Far Right Wing
         { x: 14.5 * aspectScale, y: 2.0, z: -6.5, opacity: 0.55, scale: 0.65 },
-        // Open Middle Belt (Right of center, cleanly between subtitle and MathDiya logo)
-        { x: 5.6 * aspectScale, y: 2.1, z: -4.0, opacity: 0.75, scale: 0.70 },
+        // Open Middle Belt (Right of center, cleanly framing the top headline)
+        { x: 8.2 * aspectScale, y: 2.2, z: -4.0, opacity: 0.75, scale: 0.70 },
         // Mid-Right Wing (directly right of the 'ya' letters)
         { x: 12.0 * aspectScale, y: -0.6, z: -4.5, opacity: 0.70, scale: 0.70 },
         // Lower-Right Flanks (to the right of CTA buttons)
