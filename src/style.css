@@ -139,11 +139,11 @@
 
 /* Glassmorphism Card Style */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  box-shadow: 0 20px 40px -15px rgba(31, 42, 46, 0.08), 0 0 1px 1px rgba(10, 145, 85, 0.1);
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow: 0 20px 40px -15px rgba(31, 42, 46, 0.07), 0 0 1px 1px rgba(10, 145, 85, 0.08);
 }
 
 /* Grade Tab Pill */
