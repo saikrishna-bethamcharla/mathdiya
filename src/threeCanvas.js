@@ -89,25 +89,43 @@ export class ThreeMathUniverse {
       const colorObj = palette[i % palette.length];
       const group = new THREE.Group();
 
-      // Z-depth layering: foreground (subtle) to deep atmospheric background
-      const depthTier = i % 3; // 0 = near, 1 = mid, 2 = deep
-      let zPos = -3;
-      let opacity = 0.75;
-      let baseScale = 0.65;
+      // Aspect ratio scaling
+      const aspect = window.innerWidth / window.innerHeight;
+      const aspectScale = Math.min(Math.max(aspect / 1.77, 0.75), 1.25);
 
-      if (depthTier === 2) {
-        zPos = -10 - Math.random() * 5; // Deep background
-        opacity = 0.32;
-        baseScale = 0.55;
-      } else if (depthTier === 1) {
-        zPos = -6 - Math.random() * 3; // Mid-ground
-        opacity = 0.55;
-        baseScale = 0.65;
-      } else {
-        zPos = -2 - Math.random() * 2; // Near accent
-        opacity = 0.8;
-        baseScale = 0.75;
-      }
+      // 12 curated anchor zones populating the OPEN space without covering text or the MathDiya logo:
+      const anchors = [
+        // Upper-Left Flank (clear diagonal above/left of headline)
+        { x: -11.5 * aspectScale, y: 4.6, z: -3.5, opacity: 0.8, scale: 0.75 },
+        // Far Left Wing
+        { x: -14.5 * aspectScale, y: 2.0, z: -6.5, opacity: 0.55, scale: 0.65 },
+        // Open Middle Belt (Left of center, cleanly between subtitle and MathDiya logo)
+        { x: -5.6 * aspectScale, y: 2.1, z: -4.0, opacity: 0.75, scale: 0.70 },
+        // Mid-Left Wing (directly left of the Diya lamp)
+        { x: -12.0 * aspectScale, y: -0.6, z: -4.5, opacity: 0.70, scale: 0.70 },
+        // Lower-Left Flanks (to the left of CTA buttons)
+        { x: -9.2 * aspectScale, y: -2.4, z: -5.5, opacity: 0.60, scale: 0.65 },
+        { x: -6.2 * aspectScale, y: -4.5, z: -4.0, opacity: 0.75, scale: 0.70 },
+
+        // Upper-Right Flank (clear diagonal above/right of headline)
+        { x: 11.5 * aspectScale, y: 4.6, z: -3.5, opacity: 0.8, scale: 0.75 },
+        // Far Right Wing
+        { x: 14.5 * aspectScale, y: 2.0, z: -6.5, opacity: 0.55, scale: 0.65 },
+        // Open Middle Belt (Right of center, cleanly between subtitle and MathDiya logo)
+        { x: 5.6 * aspectScale, y: 2.1, z: -4.0, opacity: 0.75, scale: 0.70 },
+        // Mid-Right Wing (directly right of the 'ya' letters)
+        { x: 12.0 * aspectScale, y: -0.6, z: -4.5, opacity: 0.70, scale: 0.70 },
+        // Lower-Right Flanks (to the right of CTA buttons)
+        { x: 9.2 * aspectScale, y: -2.4, z: -5.5, opacity: 0.60, scale: 0.65 },
+        { x: 6.2 * aspectScale, y: -4.5, z: -4.0, opacity: 0.75, scale: 0.70 }
+      ];
+
+      const anchor = anchors[i % anchors.length];
+      const zPos = anchor.z;
+      const baseX = anchor.x;
+      const baseY = anchor.y;
+      const opacity = anchor.opacity;
+      const baseScale = anchor.scale;
 
       // Elegant satin/glass material
       const material = new THREE.MeshStandardMaterial({
@@ -115,8 +133,7 @@ export class ThreeMathUniverse {
         roughness: 0.25,
         metalness: 0.35,
         transparent: true,
-        opacity: opacity,
-        depthWrite: depthTier === 0
+        opacity: opacity
       });
 
       // Helper for rounded-style bars
@@ -173,47 +190,6 @@ export class ThreeMathUniverse {
         const coneGeo = new THREE.ConeGeometry(0.8 * baseScale, 1.2 * baseScale, 3);
         const coneMesh = new THREE.Mesh(coneGeo, material);
         group.add(coneMesh);
-      }
-
-      // Distribute evenly across viewport field
-      const aspect = window.innerWidth / window.innerHeight;
-      const spreadX = 14 * aspect;
-      const spreadY = 12;
-
-      // Distribute symbols across the FULL viewport width (from far left to far right)
-      const distToCamera = this.camera.position.z - zPos;
-      const vFOV = THREE.MathUtils.degToRad(this.camera.fov);
-      const visibleHeight = 2 * Math.tan(vFOV / 2) * distToCamera;
-      const visibleWidth = visibleHeight * (window.innerWidth / window.innerHeight);
-      const halfW = visibleWidth / 2;
-      const halfH = visibleHeight / 2;
-
-      // 12 slot distribution mapping across full width:
-      // Left side: [0, 1, 2, 3, 4, 5] -> far-left to inner-left
-      // Right side: [6, 7, 8, 9, 10, 11] -> inner-right to far-right
-      const widthFractions = [
-        -0.88, -0.74, -0.58, -0.42, -0.28, -0.82,  // Left flank slots
-         0.28,  0.42,  0.58,  0.74,  0.88,  0.82   // Right flank slots
-      ];
-
-      const heightFractions = [
-         0.65, -0.60,  0.72, -0.68,  0.55,  0.05,  // Alternating heights left
-        -0.55,  0.68, -0.72,  0.60, -0.65, -0.05   // Alternating heights right
-      ];
-
-      const fracX = widthFractions[i % widthFractions.length];
-      const fracY = heightFractions[i % heightFractions.length];
-
-      // Jitter slightly for natural organic placement without clustering
-      const jitterX = (Math.random() - 0.5) * 0.06;
-      const jitterY = (Math.random() - 0.5) * 0.08;
-
-      let baseX = (fracX + jitterX) * halfW;
-      let baseY = (fracY + jitterY) * halfH;
-
-      // Ensure inner symbols leave a generous corridor for the central MathDiya logo
-      if (Math.abs(baseX) < 9.0 && Math.abs(baseY) < 3.2) {
-        baseY = (baseY >= 0 ? 1 : -1) * (3.8 + Math.random() * 2.0);
       }
 
       group.position.set(baseX, baseY, zPos);
@@ -312,16 +288,9 @@ export class ThreeMathUniverse {
 
     // Animate each mathematical element
     this.shapes.forEach((item) => {
-      // 1. Weightless Harmonic Drift (Harmonic sine waves, no jarring bounces)
-      let harmonicX = item.baseX + Math.sin(time * item.freqX + item.phase) * item.ampX;
-      let harmonicY = item.baseY + Math.cos(time * item.freqY + item.phase) * item.ampY + (this.scrollProgress * 2.2);
-
-      // Keep clearance over central MathDiya logo in Hero section
-      if (this.scrollProgress < 0.16) {
-        if (Math.abs(harmonicY) < 2.9 && Math.abs(harmonicX) < 9.0) {
-          harmonicY += (harmonicY >= 0 ? 1.6 : -1.6);
-        }
-      }
+      // 1. Weightless Harmonic Drift (Tight, controlled drift so symbols stay in their designated open pockets)
+      const harmonicX = item.baseX + Math.sin(time * item.freqX + item.phase) * (item.ampX * 0.4);
+      const harmonicY = item.baseY + Math.cos(time * item.freqY + item.phase) * (item.ampY * 0.35) + (this.scrollProgress * 2.2);
 
       // 2. Playful Mouse Interaction for Kids (Symbols gently glide away when approached)
       const dx = (item.mesh.position.x) - cursorWorldX;
