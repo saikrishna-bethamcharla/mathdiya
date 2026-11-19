@@ -169,29 +169,13 @@
         </h1>
 
         <!-- Subheadline (Richer font size, comfortable leading, fills empty vertical space elegantly) -->
-        <p class="text-sm sm:text-base lg:text-lg xl:text-xl text-ink/85 leading-relaxed font-normal max-w-4xl xl:max-w-5xl text-center mb-3 sm:mb-4">
+        <p class="text-sm sm:text-base lg:text-lg xl:text-xl text-ink/85 leading-relaxed font-normal max-w-4xl xl:max-w-5xl text-center">
           Small live cohorts (strictly up to 6 students) combining <strong>R.S. Aggarwal (Grades 3–5)</strong> and <strong>R.D. Sharma (Grades 6–8)</strong> depth with nationwide state assessment readiness (STAAR, CAASPP, FAST, NY State &amp; Georgia Milestones). We teach the <em>"why"</em>, not just the steps.
         </p>
-
-        <!-- Pedagogy & Trust Badges: Visually grounds the space directly above the MathDiya logo -->
-        <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs sm:text-[13px] font-semibold text-ink/80">
-          <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/80 border border-emerald-300/80 text-diyaGreen shadow-xs backdrop-blur-xs">
-            <svg class="w-3.5 h-3.5 text-diyaGreen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            Zero Rote Memorization
-          </span>
-          <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/80 border border-amber-300/80 text-diyaOrange shadow-xs backdrop-blur-xs">
-            <svg class="w-3.5 h-3.5 text-diyaOrange" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            14-Day 100% Refund Guarantee
-          </span>
-          <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/80 border border-teal-300/80 text-teal-800 shadow-xs backdrop-blur-xs">
-            <svg class="w-3.5 h-3.5 text-teal-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            Strictly 6 Students Per Cohort
-          </span>
-        </div>
       </div>
 
       <!-- Center 3D Showcase Corridor (Balanced open window for 3D MathDiya Logo & Mascot) -->
-      <div class="h-6 sm:h-10 lg:h-14 w-full flex items-center justify-center pointer-events-none"></div>
+      <div class="h-16 sm:h-24 lg:h-32 w-full flex items-center justify-center pointer-events-none"></div>
 
       <!-- Bottom Framing Actions & Pillars -->
       <div class="max-w-5xl mx-auto w-full flex flex-col items-center">
@@ -829,17 +813,124 @@
             <span class="font-heading font-black text-xs tracking-wider bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent uppercase group-hover:brightness-110">ZAI LABS</span>
           </a>
 
-          <div class="flex items-center gap-6">
+          <div class="flex items-center gap-4 sm:gap-6 flex-wrap">
             <button type="button" data-open-legal="privacy" class="hover:text-diyaOrange transition-colors">Privacy Policy</button>
             <button type="button" data-open-legal="terms" class="hover:text-diyaOrange transition-colors">Terms of Enrollment</button>
             <button type="button" data-open-legal="security" class="hover:text-diyaOrange transition-colors">Security</button>
             <button type="button" data-open-legal="cookies" class="hover:text-diyaOrange transition-colors">Cookie Policy</button>
+            <button type="button" data-open-cookie-preferences class="hover:text-diyaOrange transition-colors font-medium">Cookie Preferences</button>
           </div>
         </div>
 
       </div>
     </footer>
   </main>
+
+  <!-- COOKIE & PRIVACY CONSENT BANNER (GDPR, ePrivacy & CCPA Compliant Opening Tab) -->
+  <aside
+    id="cookie-consent-banner"
+    class="hidden fixed bottom-4 left-4 right-4 sm:left-6 sm:right-auto sm:max-w-md z-50 bg-white/95 backdrop-blur-md rounded-2xl sm:rounded-3xl p-5 sm:p-6 shadow-2xl border border-diyaOrange/35 text-ink text-xs transition-all duration-300 animate-fadeIn"
+    aria-label="Cookie & Privacy Consent"
+  >
+    <!-- Header -->
+    <div class="flex items-start justify-between gap-3 mb-2.5">
+      <div class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-xl bg-amber-100 flex items-center justify-center flex-shrink-0 text-diyaOrange">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5z"/><path d="M8.5 8.5v.01"/><path d="M16 15.5v.01"/><path d="M12 12v.01"/><path d="M11 17v.01"/><path d="M7 13v.01"/></svg>
+        </div>
+        <div>
+          <h4 class="font-heading font-bold text-sm sm:text-base text-ink leading-tight">
+            Cookie &amp; Privacy Preferences
+          </h4>
+          <span class="text-[10px] text-ink/60 font-semibold uppercase tracking-wider">MathDiya Transparency</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Body summary -->
+    <p class="text-ink/80 leading-relaxed mb-3.5">
+      We use strictly essential storage to manage booking sessions and remember your US time zone. You can customize whether optional functional and performance preferences are enabled. We never track children across sites or sell data to brokers.
+    </p>
+
+    <!-- Expandable Customization Details (Hidden by default) -->
+    <div id="cookie-customize-panel" class="hidden mb-3.5 space-y-2 pt-2 border-t border-stone-200">
+      <!-- Essential -->
+      <div class="flex items-center justify-between p-2 rounded-xl bg-stone-50 border border-stone-200/70">
+        <div class="pr-2">
+          <div class="font-bold text-ink text-[11px] sm:text-xs">Strictly Essential</div>
+          <div class="text-[10px] text-ink/70">Time zone preferences, security tokens &amp; booking session state.</div>
+        </div>
+        <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-diyaGreen whitespace-nowrap">Always Active</span>
+      </div>
+
+      <!-- Functional -->
+      <div class="flex items-center justify-between p-2 rounded-xl bg-stone-50 border border-stone-200/70">
+        <div class="pr-2">
+          <div class="font-bold text-ink text-[11px] sm:text-xs">Functional Preferences</div>
+          <div class="text-[10px] text-ink/70">Remembers selected diagnostic grades and interactive simulator answers.</div>
+        </div>
+        <label class="relative inline-flex items-center cursor-pointer">
+          <input type="checkbox" id="cookie-toggle-functional" class="sr-only peer" checked>
+          <div class="w-8 h-4 bg-stone-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-stone-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-diyaGreen"></div>
+        </label>
+      </div>
+
+      <!-- Analytics -->
+      <div class="flex items-center justify-between p-2 rounded-xl bg-stone-50 border border-stone-200/70">
+        <div class="pr-2">
+          <div class="font-bold text-ink text-[11px] sm:text-xs">Performance &amp; Reliability</div>
+          <div class="text-[10px] text-ink/70">Anonymous rendering telemetry to ensure fast, smooth 3D &amp; video playback.</div>
+        </div>
+        <label class="relative inline-flex items-center cursor-pointer">
+          <input type="checkbox" id="cookie-toggle-analytics" class="sr-only peer" checked>
+          <div class="w-8 h-4 bg-stone-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-stone-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-diyaGreen"></div>
+        </label>
+      </div>
+    </div>
+
+    <!-- Actions Row -->
+    <div class="flex items-center gap-2 flex-wrap">
+      <button
+        type="button"
+        id="cookie-accept-all"
+        class="flex-1 min-w-[105px] py-2 px-3 rounded-xl bg-diyaOrange hover:bg-diyaOrange/95 text-white font-heading font-bold text-xs shadow-sm hover:shadow transition-all text-center"
+      >
+        Accept All
+      </button>
+
+      <button
+        type="button"
+        id="cookie-essential-only"
+        class="flex-1 min-w-[105px] py-2 px-3 rounded-xl bg-stone-100 hover:bg-stone-200 text-ink font-heading font-semibold text-xs border border-stone-200 transition-all text-center"
+      >
+        Essential Only
+      </button>
+
+      <button
+        type="button"
+        id="cookie-toggle-customize"
+        class="w-full sm:w-auto py-1 px-2 text-[11px] text-diyaGreen font-bold underline hover:text-diyaOrange transition-colors text-center"
+      >
+        Customize
+      </button>
+
+      <button
+        type="button"
+        id="cookie-save-custom"
+        class="hidden w-full py-2 px-3 rounded-xl bg-diyaGreen hover:bg-diyaGreen/95 text-white font-heading font-bold text-xs shadow-sm transition-all text-center mt-1"
+      >
+        Save Custom Preferences
+      </button>
+    </div>
+
+    <!-- Legal links -->
+    <div class="mt-2.5 pt-2 border-t border-stone-100 text-[10px] text-ink/60 flex items-center justify-between">
+      <span>Complies with US COPPA, EU GDPR &amp; ePrivacy.</span>
+      <button type="button" data-open-legal="cookies" class="underline text-diyaOrange font-semibold hover:text-diyaGreen">
+        Read Full Policy
+      </button>
+    </div>
+  </aside>
 
   <!-- Scroll To Top Floating Button -->
   <button

@@ -3,6 +3,7 @@ import { MascotScrollEngine } from './scrollEngine.js';
 import { GradeExplorer } from './gradeExplorer.js';
 import { StaarQuizSimulator } from './staarQuiz.js';
 import { BookingModal } from './bookingModal.js';
+import { CookieConsentManager } from './cookieConsent.js';
 
 // 0. Disable browser automatic scroll restoration so page always reloads at the Hero section
 if ('scrollRestoration' in history) {
@@ -40,7 +41,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const bookingModal = new BookingModal();
   window.mathDiyaModal = bookingModal;
 
-  // 6. Mobile Navigation Menu Toggle
+  // 6. Initialize International Cookie & Privacy Consent Manager (GDPR, CCPA, ePrivacy)
+  const cookieManager = new CookieConsentManager();
+  window.mathDiyaCookieConsentManager = cookieManager;
+
+  // 7. Mobile Navigation Menu Toggle
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
   const mobileNav = document.getElementById('mobile-nav');
   if (mobileMenuBtn && mobileNav) {
