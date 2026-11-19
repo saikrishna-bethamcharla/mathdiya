@@ -99,31 +99,35 @@ export class ThreeMathUniverse {
       const aspect = window.innerWidth / window.innerHeight;
       const aspectScale = Math.min(Math.max(aspect / 1.77, 0.75), 1.25);
 
-      // 12 curated anchor zones populating the OPEN space without covering text or the MathDiya logo:
+      // 12 anchor zones spread WIDE across the full screen width and height (leaving the entire center completely open):
       const anchors = [
-        // Upper-Left Flank (clear diagonal above/left of headline)
-        { x: -11.5 * aspectScale, y: 4.6, z: -3.5, opacity: 0.8, scale: 0.75 },
-        // Far Left Wing
-        { x: -14.5 * aspectScale, y: 2.0, z: -6.5, opacity: 0.55, scale: 0.65 },
-        // Open Middle Belt (Left of center, cleanly framing the top headline)
-        { x: -8.2 * aspectScale, y: 2.2, z: -4.0, opacity: 0.75, scale: 0.70 },
-        // Mid-Left Wing (directly left of the Diya lamp)
-        { x: -12.0 * aspectScale, y: -0.6, z: -4.5, opacity: 0.70, scale: 0.70 },
-        // Lower-Left Flanks (to the left of CTA buttons)
-        { x: -9.2 * aspectScale, y: -2.4, z: -5.5, opacity: 0.60, scale: 0.65 },
-        { x: -6.2 * aspectScale, y: -4.5, z: -4.0, opacity: 0.75, scale: 0.70 },
+        // LEFT FLANK (Outer margins from top to bottom)
+        // 1. Far Upper-Left Corner
+        { x: -16.0 * aspectScale, y: 6.8, z: -4.0, opacity: 0.75, scale: 0.75 },
+        // 2. High Left Wing
+        { x: -12.8 * aspectScale, y: 4.8, z: -3.5, opacity: 0.80, scale: 0.70 },
+        // 3. Far Outer Mid-Left
+        { x: -17.5 * aspectScale, y: 1.8, z: -5.5, opacity: 0.65, scale: 0.65 },
+        // 4. Mid-Left Flank (well to the left of the Diya lamp)
+        { x: -13.5 * aspectScale, y: -0.6, z: -4.0, opacity: 0.75, scale: 0.70 },
+        // 5. Far Lower-Left Wing
+        { x: -16.5 * aspectScale, y: -4.0, z: -5.0, opacity: 0.65, scale: 0.65 },
+        // 6. Bottom-Left Margin (beside trust pillars)
+        { x: -12.5 * aspectScale, y: -6.8, z: -3.5, opacity: 0.75, scale: 0.70 },
 
-        // Upper-Right Flank (clear diagonal above/right of headline)
-        { x: 11.5 * aspectScale, y: 4.6, z: -3.5, opacity: 0.8, scale: 0.75 },
-        // Far Right Wing
-        { x: 14.5 * aspectScale, y: 2.0, z: -6.5, opacity: 0.55, scale: 0.65 },
-        // Open Middle Belt (Right of center, cleanly framing the top headline)
-        { x: 8.2 * aspectScale, y: 2.2, z: -4.0, opacity: 0.75, scale: 0.70 },
-        // Mid-Right Wing (directly right of the 'ya' letters)
-        { x: 12.0 * aspectScale, y: -0.6, z: -4.5, opacity: 0.70, scale: 0.70 },
-        // Lower-Right Flanks (to the right of CTA buttons)
-        { x: 9.2 * aspectScale, y: -2.4, z: -5.5, opacity: 0.60, scale: 0.65 },
-        { x: 6.2 * aspectScale, y: -4.5, z: -4.0, opacity: 0.75, scale: 0.70 }
+        // RIGHT FLANK (Outer margins from top to bottom)
+        // 7. Far Upper-Right Corner
+        { x: 16.0 * aspectScale, y: 6.8, z: -4.0, opacity: 0.75, scale: 0.75 },
+        // 8. High Right Wing
+        { x: 12.8 * aspectScale, y: 4.8, z: -3.5, opacity: 0.80, scale: 0.70 },
+        // 9. Far Outer Mid-Right
+        { x: 17.5 * aspectScale, y: 1.8, z: -5.5, opacity: 0.65, scale: 0.65 },
+        // 10. Mid-Right Flank (well to the right of 'ya')
+        { x: 13.5 * aspectScale, y: -0.6, z: -4.0, opacity: 0.75, scale: 0.70 },
+        // 11. Far Lower-Right Wing
+        { x: 16.5 * aspectScale, y: -4.0, z: -5.0, opacity: 0.65, scale: 0.65 },
+        // 12. Bottom-Right Margin (beside trust pillars)
+        { x: 12.5 * aspectScale, y: -6.8, z: -3.5, opacity: 0.75, scale: 0.70 }
       ];
 
       const anchor = anchors[i % anchors.length];
