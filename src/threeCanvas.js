@@ -183,8 +183,13 @@ export class ThreeMathUniverse {
       // Position in golden spiral offset so screen is balanced
       const theta = i * phi * Math.PI * 2;
       const radiusFraction = Math.sqrt((i + 1) / total);
-      const baseX = Math.cos(theta) * spreadX * 0.48 * radiusFraction;
-      const baseY = Math.sin(theta) * spreadY * 0.48 * radiusFraction;
+      let baseX = Math.cos(theta) * spreadX * 0.52 * radiusFraction;
+      let baseY = Math.sin(theta) * spreadY * 0.50 * radiusFraction;
+
+      // Keep the central MathDiya logo corridor completely clear of floating symbols
+      if (Math.abs(baseY) < 3.2 && Math.abs(baseX) < 9.5) {
+        baseY = (baseY >= 0 ? 1 : -1) * (3.8 + Math.random() * 2.2);
+      }
 
       group.position.set(baseX, baseY, zPos);
       this.scene.add(group);
@@ -283,8 +288,15 @@ export class ThreeMathUniverse {
     // Animate each mathematical element
     this.shapes.forEach((item) => {
       // 1. Weightless Harmonic Drift (Harmonic sine waves, no jarring bounces)
-      const harmonicX = item.baseX + Math.sin(time * item.freqX + item.phase) * item.ampX;
-      const harmonicY = item.baseY + Math.cos(time * item.freqY + item.phase) * item.ampY + (this.scrollProgress * 2.2);
+      let harmonicX = item.baseX + Math.sin(time * item.freqX + item.phase) * item.ampX;
+      let harmonicY = item.baseY + Math.cos(time * item.freqY + item.phase) * item.ampY + (this.scrollProgress * 2.2);
+
+      // Keep clearance over central MathDiya logo in Hero section
+      if (this.scrollProgress < 0.16) {
+        if (Math.abs(harmonicY) < 2.9 && Math.abs(harmonicX) < 9.0) {
+          harmonicY += (harmonicY >= 0 ? 1.6 : -1.6);
+        }
+      }
 
       // 2. Playful Mouse Interaction for Kids (Symbols gently glide away when approached)
       const dx = (item.mesh.position.x) - cursorWorldX;
